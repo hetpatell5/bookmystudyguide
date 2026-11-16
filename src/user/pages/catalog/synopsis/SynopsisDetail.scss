@@ -1,0 +1,730 @@
+@import "../../../../_variables.scss";
+
+// ─── Page Shell ────────────────────────────────────────────────────────────────
+.sd-page {
+  font-family: $font-primary;
+  background: $bg-main;
+  min-height: 100vh;
+  padding-top: 16px;
+  padding-bottom: 100px;
+
+  .container {
+    max-width: 1240px;
+  }
+}
+
+.sd-error {
+  padding: 120px 20px;
+  text-align: center;
+  font-size: 18px;
+  color: $gray-500;
+  font-family: $font-primary;
+}
+
+.sd-back {
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid $gray-200;
+  border-radius: 999px;
+  background: $white;
+  color: $gray-700;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: $font-primary;
+  cursor: pointer;
+  box-shadow: $shadow-sm;
+  transition: $transition-fast;
+
+  &:hover {
+    border-color: rgba($primary, 0.24);
+    color: $primary;
+    background: rgba($primary, 0.03);
+  }
+}
+
+// ─── Breadcrumb ────────────────────────────────────────────────────────────────
+.sd-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 0 24px;
+  font-size: 13px;
+  color: $gray-400;
+
+  a {
+    color: $gray-500;
+    text-decoration: none;
+    transition: $transition-fast;
+
+    &:hover { color: $primary; }
+  }
+
+  span {
+    color: $gray-700;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 260px;
+  }
+
+  svg { flex-shrink: 0; color: $gray-300; }
+}
+
+// ─── Body grid ────────────────────────────────────────────────────────────────
+.sd-body {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 40px;
+  align-items: start;
+
+  @include desktop {
+    grid-template-columns: 360px 1fr;
+    gap: 28px;
+  }
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+// ─── Gallery ──────────────────────────────────────────────────────────────────
+.sd-gallery {
+  position: sticky;
+  top: calc(#{$header-height} + 20px);
+
+  @include tablet {
+    position: static;
+  }
+
+  &__main {
+    background: $white;
+    border-radius: $radius-lg;
+    border: 1px solid $gray-200;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    position: relative;
+    box-shadow: $shadow-md;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 16px;
+    }
+  }
+
+  &__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $gray-300;
+    background: $gray-50;
+  }
+
+  &__discount {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: $danger;
+    color: $white;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 5px 12px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba($danger, 0.35);
+  }
+
+  &__thumbs {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+
+    &::-webkit-scrollbar { height: 3px; }
+    &::-webkit-scrollbar-thumb { background: $gray-300; border-radius: 4px; }
+  }
+
+  &__thumb {
+    width: 72px;
+    height: 90px;
+    flex-shrink: 0;
+    border-radius: $radius-sm;
+    overflow: hidden;
+    border: 2px solid transparent;
+    background: $white;
+    padding: 4px;
+    cursor: pointer;
+    transition: $transition-fast;
+    box-shadow: $shadow-sm;
+
+    &.active {
+      border-color: $primary;
+      box-shadow: 0 0 0 3px rgba($primary, 0.12);
+    }
+
+    img { width: 100%; height: 100%; object-fit: contain; }
+  }
+}
+
+// ─── Delivery badges (below gallery) ──────────────────────────────────────────
+.sd-delivery-badges {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sd-delivery-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: $white;
+  border: 1px solid $gray-100;
+  border-radius: $radius-sm;
+  font-size: 13px;
+  font-weight: 500;
+  color: $gray-700;
+  box-shadow: $shadow-sm;
+
+  svg { color: $primary; flex-shrink: 0; }
+}
+
+// ─── Info panel ────────────────────────────────────────────────────────────────
+.sd-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+// ─── Badges row ───────────────────────────────────────────────────────────────
+.sd-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.sd-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+
+  &--type {
+    background: rgba($primary, 0.08);
+    color: $primary;
+    border: 1px solid rgba($primary, 0.18);
+  }
+
+  &--verified {
+    background: rgba($success, 0.08);
+    color: $success;
+    border: 1px solid rgba($success, 0.2);
+  }
+}
+
+// ─── Title ────────────────────────────────────────────────────────────────────
+.sd-title {
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 800;
+  color: $gray-900;
+  line-height: 1.2;
+  margin: 0 0 16px;
+  letter-spacing: -0.3px;
+}
+
+// ─── Rating ───────────────────────────────────────────────────────────────────
+.sd-rating {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: $gray-600;
+  font-weight: 500;
+  margin-bottom: 24px;
+
+  &__divider { color: $gray-300; }
+}
+
+.sd-stars { display: flex; gap: 2px; }
+
+// ─── Specs grid ───────────────────────────────────────────────────────────────
+.sd-specs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: $gray-100;
+  border: 1px solid $gray-200;
+  border-radius: $radius-md;
+  overflow: hidden;
+  margin-bottom: 24px;
+
+  @include mobile {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.sd-spec {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  background: $white;
+  transition: $transition-fast;
+
+  &:hover { background: $gray-50; }
+
+  svg { color: $primary; margin-top: 2px; flex-shrink: 0; }
+
+  &__label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: $gray-400;
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+
+  &__value {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: $gray-800;
+  }
+}
+
+// ─── Price ────────────────────────────────────────────────────────────────────
+.sd-price-block {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.sd-price {
+  font-size: 32px;
+  font-weight: 900;
+  color: $gray-900;
+  letter-spacing: -0.5px;
+}
+
+.sd-mrp {
+  font-size: 18px;
+  color: $gray-400;
+  text-decoration: line-through;
+  font-weight: 500;
+}
+
+.sd-saving {
+  font-size: 13px;
+  font-weight: 800;
+  color: $success;
+  background: rgba($success, 0.1);
+  padding: 3px 10px;
+  border-radius: 50px;
+}
+
+.sd-price-note {
+  font-size: 12.5px;
+  color: $gray-400;
+  margin: 0 0 24px;
+}
+
+// ─── Variants ─────────────────────────────────────────────────────────────────
+.sd-variants {
+  margin-bottom: 24px;
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: $gray-700;
+    margin-bottom: 10px;
+
+    svg { color: $primary; }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 10px;
+  }
+}
+
+.sd-variant {
+  background: $white;
+  border: 1.5px solid $gray-200;
+  border-radius: $radius-sm;
+  padding: 14px 16px;
+  cursor: pointer;
+  text-align: left;
+  transition: $transition-smooth;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &:hover {
+    border-color: $gray-300;
+    background: $gray-50;
+  }
+
+  &.active {
+    border-color: $primary;
+    background: rgba($primary, 0.04);
+    box-shadow: 0 0 0 3px rgba($primary, 0.1);
+
+    .sd-variant__price { color: $primary; }
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__lang {
+    font-size: 14px;
+    font-weight: 700;
+    color: $gray-800;
+  }
+
+  &__type {
+    font-size: 12px;
+    color: $gray-400;
+    font-weight: 500;
+  }
+
+  &__price {
+    font-size: 15px;
+    font-weight: 800;
+    color: $gray-700;
+  }
+}
+
+// ─── CTA ──────────────────────────────────────────────────────────────────────
+.sd-cta {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+
+  &__secondary {
+    display: flex;
+    gap: 8px;
+  }
+}
+
+.sd-btn {
+  height: 52px;
+  padding: 0 24px;
+  border: none;
+  border-radius: $radius-sm;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: $font-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: $transition-smooth;
+
+  &--cart {
+    flex: 1;
+    background: $gray-100;
+    color: $gray-800;
+    border: 1.5px solid $gray-200;
+
+    &:hover {
+      background: $gray-200;
+    }
+  }
+
+  &--buy {
+    flex: 1.4;
+    background: $primary;
+    color: $white;
+    box-shadow: 0 6px 18px rgba($primary, 0.3);
+
+    &:hover {
+      background: $primary-dark;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba($primary, 0.35);
+    }
+  }
+}
+
+.sd-icon-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: $radius-sm;
+  border: 1.5px solid $gray-200;
+  background: $white;
+  color: $gray-500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: $transition-fast;
+  flex-shrink: 0;
+
+  &:hover {
+    border-color: $gray-300;
+    color: $gray-800;
+  }
+
+  &.active {
+    background: #fff1f1;
+    border-color: #fecaca;
+    color: $danger;
+  }
+}
+
+// ─── Trust strip ──────────────────────────────────────────────────────────────
+.sd-trust {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 20px;
+  background: $gray-50;
+  border: 1px dashed $gray-200;
+  border-radius: $radius-md;
+  margin-bottom: 28px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    svg {
+      color: $primary;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: $gray-800;
+      margin-bottom: 2px;
+    }
+
+    p {
+      font-size: 12px;
+      color: $gray-500;
+      margin: 0;
+      line-height: 1.4;
+    }
+  }
+}
+
+// ─── Description ──────────────────────────────────────────────────────────────
+.sd-desc {
+  background: $white;
+  border: 1px solid $gray-100;
+  border-radius: $radius-md;
+  overflow: hidden;
+
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 24px;
+    border-bottom: 1px solid $gray-100;
+    background: $gray-50;
+
+    svg { color: $primary; }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: $gray-800;
+      margin: 0;
+    }
+  }
+
+  &__body {
+    padding: 24px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: $gray-600;
+    word-break: break-word;
+
+    p { margin-bottom: 1.2rem; }
+
+    h1, h2, h3, h4 {
+      font-family: $font-primary;
+      color: $gray-800;
+      font-weight: 800;
+      margin: 2rem 0 0.8rem;
+      line-height: 1.3;
+    }
+    h1 { font-size: 1.6em; border-bottom: 2px solid $gray-100; padding-bottom: 8px; }
+    h2 { font-size: 1.35em; }
+    h3 { font-size: 1.15em; }
+    h4 { font-size: 1em; }
+
+    strong, b { color: $gray-800; font-weight: 700; }
+
+    ul, ol {
+      margin: 1.2rem 0;
+      padding-left: 1.4rem;
+    }
+    ul { list-style: disc; }
+    ol { list-style: decimal; }
+    li { margin-bottom: 0.6rem; }
+
+    a {
+      color: $primary;
+      font-weight: 600;
+      text-decoration: underline;
+
+      &:hover { opacity: 0.8; }
+    }
+
+    blockquote {
+      margin: 1.5rem 0;
+      padding: 1rem 1.5rem;
+      background: $gray-50;
+      border-left: 3px solid $primary;
+      border-radius: 0 $radius-sm $radius-sm 0;
+      color: $gray-500;
+      font-style: italic;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      border-radius: $radius-sm;
+      overflow: hidden;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid $gray-200;
+      padding: 12px 16px;
+    }
+    th {
+      background: $gray-50;
+      font-weight: 700;
+      color: $gray-700;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: $radius-sm;
+      margin: 1.5rem 0;
+      box-shadow: $shadow-md;
+    }
+  }
+}
+
+// ─── Mobile sticky bar ────────────────────────────────────────────────────────
+.sd-mobile-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $white;
+  padding: 12px 20px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -8px 32px rgba($primary, 0.1);
+  border-top: 1px solid $gray-100;
+  z-index: 100;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  @include tablet {
+    display: flex;
+  }
+
+  &__price {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  &__current {
+    font-size: 20px;
+    font-weight: 900;
+    color: $gray-900;
+  }
+
+  &__old {
+    font-size: 13px;
+    color: $gray-400;
+    text-decoration: line-through;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__cart {
+    width: 46px;
+    height: 46px;
+    border-radius: $radius-sm;
+    border: 1.5px solid $gray-200;
+    background: $white;
+    color: $gray-700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: $transition-fast;
+
+    &:hover { background: $gray-50; }
+  }
+
+  &__buy {
+    height: 46px;
+    padding: 0 22px;
+    background: $primary;
+    color: $white;
+    border: none;
+    border-radius: $radius-sm;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: $font-primary;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+    transition: $transition-fast;
+
+    &:hover { background: $primary-dark; }
+  }
+}

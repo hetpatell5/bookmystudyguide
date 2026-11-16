@@ -1,0 +1,283 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--bg-sidebar);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s;
+  white-space: nowrap;
+}
+
+.sidebar.collapsed {
+  width: 70px;
+}
+
+.sidebar.collapsed:hover {
+  width: 216px;
+  box-shadow: 6px 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 18px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+  justify-content: space-between;
+  transition: padding 0.25s;
+}
+
+.sidebar.collapsed:not(:hover) .logo {
+  justify-content: center;
+  padding: 20px 0 16px;
+  gap: 0;
+}
+
+.logoMark {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-md);
+  background: rgba(245, 158, 11, 0.18);
+  color: var(--brand-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logoTitle {
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.logoSub {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.42);
+  font-weight: 500;
+  margin-top: 1px;
+}
+
+.logoInfo {
+  transition: opacity 0.25s, width 0.25s;
+  opacity: 1;
+}
+
+.sidebar.collapsed:not(:hover) .logoInfo {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.collapseBtn {
+  color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: var(--t-fast);
+}
+
+.collapseBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.sidebar.collapsed:not(:hover) .collapseBtn {
+  display: none;
+}
+
+.nav {
+  flex: 1;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+}
+
+.nav::-webkit-scrollbar {
+  width: 3px;
+}
+
+.nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 99px;
+}
+
+.group {
+  margin-bottom: 4px;
+}
+
+.groupLabel {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.28);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 8px 8px 4px;
+  transition: opacity 0.25s, height 0.25s, padding 0.25s;
+}
+
+.sidebar.collapsed:not(:hover) .groupLabel {
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 0;
+  display: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 10px;
+  border-radius: var(--r-md);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.58);
+  transition: var(--t-base);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sidebar.collapsed:not(:hover) .item {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.item.active {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--brand-accent);
+  font-weight: 600;
+}
+
+.itemIcon {
+  flex-shrink: 0;
+}
+
+.navText {
+  transition: opacity 0.25s, width 0.25s;
+  opacity: 1;
+}
+
+.sidebar.collapsed:not(:hover) .navText {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.footer {
+  padding: 12px 12px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 6px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand-accent) 0%, #ef4444 100%);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.profileInfo {
+  min-width: 0;
+  transition: opacity 0.25s, width 0.25s;
+  opacity: 1;
+}
+
+.profileName {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profileRole {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.38);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  text-transform: capitalize;
+}
+
+.sidebar.collapsed:not(:hover) .profileInfo {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: var(--r-md);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.48);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: var(--t-base);
+  width: 100%;
+}
+
+.logoutBtn:hover {
+  background: rgba(220, 38, 38, 0.15);
+  color: #f87171;
+}
+
+.sidebar.collapsed:not(:hover) .logoutBtn {
+  justify-content: center;
+  padding: 8px;
+}
+
+.btnText {
+  transition: opacity 0.25s, width 0.25s;
+  opacity: 1;
+}
+
+.sidebar.collapsed:not(:hover) .btnText {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}

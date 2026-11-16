@@ -1,0 +1,279 @@
+// --- Master Styles for Degree Pages ---
+@import "../../../../_variables.scss";
+
+.degree-page-wrapper {
+    padding-top: 100px;
+    min-height: 100vh;
+    background: radial-gradient(circle at top right, rgba($primary-color, 0.05), transparent),
+        radial-gradient(circle at bottom left, rgba($accent-color, 0.05), transparent);
+
+    .degree-hero {
+        text-align: center;
+        margin-bottom: 60px;
+        padding: 0 20px;
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba($white, 0.05);
+            border: 1px solid rgba($white, 0.1);
+            border-radius: 50px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: $text-primary;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+
+            span {
+                background: $gradient-primary;
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+
+        .hero-desc {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .search-filter-bar {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            gap: 15px;
+            background: rgba($white, 0.03);
+            padding: 10px;
+            border-radius: 16px;
+            border: 1px solid rgba($white, 0.08);
+            backdrop-filter: blur(20px);
+
+            .search-box {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                background: rgba($black, 0.2);
+                padding: 0 20px;
+                border-radius: 12px;
+                border: 1px solid rgba($white, 0.05);
+                transition: all 0.3s ease;
+
+                &:focus-within {
+                    border-color: rgba($primary-color, 0.5);
+                    box-shadow: 0 0 15px rgba($primary-color, 0.1);
+                }
+
+                svg {
+                    color: var(--text-muted);
+                }
+
+                input {
+                    width: 100%;
+                    height: 50px;
+                    background: transparent;
+                    border: none;
+                    color: $text-primary;
+                    outline: none;
+                    font-size: 1rem;
+
+                    &::placeholder {
+                        color: rgba($text-muted, 0.5);
+                    }
+                }
+            }
+        }
+    }
+
+    .degree-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 30px;
+        margin-bottom: 80px;
+        padding: 0 20px;
+
+        .degree-card {
+            position: relative;
+            background: rgba($white, 0.03);
+            border: 1px solid rgba($white, 0.08);
+            border-radius: 24px;
+            padding: 30px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            backdrop-filter: blur(10px);
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(135deg, rgba(var(--card-color), 0.1), transparent);
+                opacity: 0;
+                transition: opacity 0.4s ease;
+            }
+
+            &:hover {
+                transform: translateY(-10px);
+                border-color: rgba(var(--card-color), 0.3);
+                background: rgba($white, 0.05);
+
+                &::before {
+                    opacity: 1;
+                }
+
+                .card-icon {
+                    transform: scale(1.1) rotate(5deg);
+                    box-shadow: 0 15px 30px rgba(var(--card-color), 0.3);
+                }
+
+                .view-btn {
+                    background: var(--card-color);
+                    color: white;
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+
+            .card-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                z-index: 1;
+
+                .card-icon {
+                    width: 56px;
+                    height: 56px;
+                    background: rgba(var(--card-color), 0.1);
+                    color: var(--card-color);
+                    border-radius: 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.4s ease;
+                    border: 1px solid rgba(var(--card-color), 0.2);
+                }
+
+                .card-badge {
+                    background: rgba($white, 0.05);
+                    padding: 4px 12px;
+                    border-radius: 50px;
+                    font-size: 0.75rem;
+                    color: var(--text-muted);
+                    font-weight: 500;
+                }
+            }
+
+            .card-content {
+                z-index: 1;
+                flex: 1;
+
+                h3 {
+                    font-size: 1.25rem;
+                    font-weight: 700;
+                    color: $text-primary;
+                    margin-bottom: 12px;
+                    line-height: 1.4;
+                }
+
+                p {
+                    font-size: 0.95rem;
+                    color: var(--text-muted);
+                    line-height: 1.6;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+            }
+
+            .card-footer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                z-index: 1;
+                margin-top: 10px;
+
+                .stats {
+                    display: flex;
+                    gap: 15px;
+                    color: rgba($text-muted, 0.8);
+                    font-size: 0.85rem;
+
+                    span {
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                    }
+                }
+
+                .view-btn {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    padding: 10px 20px;
+                    border-radius: 12px;
+                    background: rgba($white, 0.05);
+                    color: var(--text-muted);
+                    font-weight: 600;
+                    font-size: 0.9rem;
+                    transition: all 0.3s ease;
+                    border: none;
+                    cursor: pointer;
+                    opacity: 0.8;
+                    transform: translateY(5px);
+                }
+            }
+        }
+    }
+}
+
+// Responsive Tweaks
+@media (max-width: 768px) {
+    .degree-page-wrapper {
+        padding-top: 80px;
+
+        .degree-hero {
+            margin-bottom: 40px;
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .search-filter-bar {
+                flex-direction: column;
+                background: transparent;
+                padding: 0;
+                border: none;
+                gap: 10px;
+
+                .search-box {
+                    background: rgba($white, 0.05);
+                    border: 1px solid rgba($white, 0.1);
+                }
+            }
+        }
+
+        .degree-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+    }
+}

@@ -1,0 +1,680 @@
+@import "../../../../_variables.scss";
+
+// ─── Page Shell ────────────────────────────────────────────────────────────────
+.cp-page {
+  font-family: $font-primary;
+  background: $bg-main;
+  min-height: calc(100vh - #{$header-height});
+  padding-bottom: 80px;
+}
+
+// ─── Hero ───────────────────────────────────────────────────────────────────────
+.cp-hero {
+  background: $gradient-hero;
+  padding: 120px 0 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  // Subtle decorative rings
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+  }
+  &::before {
+    width: 520px;
+    height: 520px;
+    top: -180px;
+    right: -120px;
+  }
+  &::after {
+    width: 360px;
+    height: 360px;
+    bottom: -160px;
+    left: -80px;
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba($accent, 0.18);
+    color: $accent;
+    border: 1px solid rgba($accent, 0.35);
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    font-size: 42px;
+    font-weight: 800;
+    color: $white;
+    margin: 0 0 14px;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+
+    @include tablet {
+      font-size: 30px;
+    }
+  }
+
+  &__subtitle {
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.78);
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+
+  &__stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  &__stat {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14px;
+    font-weight: 500;
+
+    svg {
+      color: $accent;
+    }
+  }
+}
+
+// ─── Layout ──────────────────────────────────────────────────────────────────
+.cp-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 28px;
+  max-width: 1080px;
+  margin: -40px auto 0;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    margin-top: -24px;
+  }
+}
+
+// ─── Sidebar ─────────────────────────────────────────────────────────────────
+.cp-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @include tablet {
+    display: none; // hide on mobile to keep it clean
+  }
+
+  &__card {
+    background: $white;
+    border-radius: $radius-md;
+    padding: 24px;
+    box-shadow: $shadow-md;
+    border-top: 3px solid $primary;
+
+    &--accent {
+      border-top-color: $accent;
+
+      svg {
+        color: $accent-dark;
+      }
+    }
+
+    svg {
+      color: $primary;
+      margin-bottom: 12px;
+    }
+
+    h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: $gray-800;
+      margin: 0 0 12px;
+    }
+
+    p {
+      font-size: 13.5px;
+      color: $gray-600;
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
+
+  &__steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: step;
+
+    li {
+      counter-increment: step;
+      display: flex;
+      gap: 10px;
+      font-size: 13.5px;
+      color: $gray-600;
+      line-height: 1.5;
+      margin-bottom: 10px;
+      align-items: flex-start;
+
+      &::before {
+        content: counter(step);
+        min-width: 22px;
+        height: 22px;
+        background: $primary;
+        color: $white;
+        border-radius: 50%;
+        font-size: 11px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1px;
+        flex-shrink: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// ─── Form Card ───────────────────────────────────────────────────────────────
+.cp-form-card {
+  background: $white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-lg;
+  padding: 40px;
+
+  @include tablet {
+    padding: 28px 20px;
+    border-radius: $radius-md;
+  }
+}
+
+// ─── Progress ────────────────────────────────────────────────────────────────
+.cp-progress {
+  display: flex;
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+.cp-progress__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.cp-progress__circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid $gray-200;
+  background: $white;
+  color: $gray-400;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: $transition-smooth;
+
+  .cp-progress__step.active & {
+    border-color: $primary;
+    background: $primary;
+    color: $white;
+  }
+
+  .cp-progress__step.done & {
+    border-color: $success;
+    background: $success;
+    color: $white;
+  }
+}
+
+.cp-progress__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: $gray-400;
+  white-space: nowrap;
+
+  .cp-progress__step.active &,
+  .cp-progress__step.done & {
+    color: $gray-700;
+  }
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.cp-progress__line {
+  flex: 1;
+  height: 2px;
+  background: $gray-200;
+  margin: 0 8px;
+  margin-bottom: 22px; // align with circle center — label below adds ~22px height
+  border-radius: 2px;
+  transition: $transition-smooth;
+
+  &--done {
+    background: $success;
+  }
+}
+
+// ─── Section ─────────────────────────────────────────────────────────────────
+.cp-section {
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid $gray-100;
+
+    svg {
+      color: $primary;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: $gray-800;
+      margin: 0;
+    }
+  }
+}
+
+// ─── Grid ────────────────────────────────────────────────────────────────────
+.cp-grid {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 18px;
+
+  &--2 {
+    grid-template-columns: 1fr 1fr;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &--1 {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ─── Field ───────────────────────────────────────────────────────────────────
+.cp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: $gray-600;
+
+    svg {
+      opacity: 0.6;
+    }
+
+    span {
+      color: $danger;
+    }
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid $gray-200;
+    border-radius: $radius-sm;
+    background: $gray-50;
+    font-size: 14.5px;
+    font-family: $font-primary;
+    color: $gray-800;
+    transition: $transition-smooth;
+    box-sizing: border-box;
+
+    &::placeholder {
+      color: $gray-400;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      background: $white;
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+
+    &:disabled {
+      background: $gray-100;
+      cursor: not-allowed;
+      color: $gray-400;
+    }
+  }
+
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 44px;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.6;
+  }
+}
+
+// ─── Navigation Buttons ──────────────────────────────────────────────────────
+.cp-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1.5px solid $gray-100;
+}
+
+.cp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: $radius-sm;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: $font-primary;
+  cursor: pointer;
+  border: none;
+  transition: $transition-smooth;
+  text-decoration: none;
+
+  &--outline {
+    background: transparent;
+    border: 1.5px solid $gray-200;
+    color: $gray-600;
+
+    &:hover {
+      border-color: $gray-300;
+      background: $gray-50;
+    }
+  }
+
+  &--primary {
+    background: $primary;
+    color: $white;
+    box-shadow: 0 4px 14px rgba($primary, 0.3);
+
+    &:hover {
+      background: $primary-dark;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba($primary, 0.35);
+    }
+  }
+
+  &--whatsapp {
+    background: #25d366;
+    color: $white;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+
+    &:hover:not(:disabled) {
+      background: #1ebe5a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+.cp-spinner {
+  animation: cp-spin 1s linear infinite;
+}
+
+// ─── Footer Note ─────────────────────────────────────────────────────────────
+.cp-note {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  font-size: 13px;
+  color: $gray-400;
+  margin-top: 14px;
+
+  svg {
+    color: #25d366;
+    flex-shrink: 0;
+  }
+}
+
+// ─── Searchable Select (ss-*) ────────────────────────────────────────────────
+.ss-wrap {
+  position: relative;
+  width: 100%;
+  font-family: $font-primary;
+
+  &--disabled .ss-trigger {
+    background: $gray-100;
+    cursor: not-allowed;
+    color: $gray-400;
+    border-color: $gray-200;
+  }
+
+  &--open .ss-trigger {
+    border-color: $primary;
+    background: $white;
+    box-shadow: 0 0 0 3px rgba($primary, 0.1);
+  }
+}
+
+.ss-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid $gray-200;
+  border-radius: $radius-sm;
+  background: $gray-50;
+  font-size: 14.5px;
+  color: $gray-800;
+  cursor: pointer;
+  transition: $transition-smooth;
+  box-sizing: border-box;
+  user-select: none;
+  min-height: 50px;
+
+  &__value {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    &--placeholder { color: $gray-400; }
+  }
+
+  &__icons {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+}
+
+.ss-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: $gray-200;
+  color: $gray-500;
+  cursor: pointer;
+  transition: $transition-smooth;
+  flex-shrink: 0;
+  &:hover { background: $gray-300; color: $gray-700; }
+}
+
+.ss-chevron {
+  color: $gray-400;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  &--up { transform: rotate(180deg); }
+}
+
+.ss-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: $white;
+  border: 1.5px solid $gray-200;
+  border-radius: $radius-sm;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  overflow: hidden;
+  animation: ss-drop 0.15s ease;
+}
+
+@keyframes ss-drop {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ss-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1.5px solid $gray-100;
+  background: $gray-50;
+
+  svg { color: $gray-400; flex-shrink: 0; }
+
+  &__input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 13.5px;
+    font-family: $font-primary;
+    color: $gray-800;
+    outline: none;
+    &::placeholder { color: $gray-400; }
+  }
+
+  &__clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border: none;
+    background: $gray-200;
+    border-radius: 50%;
+    color: $gray-500;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    transition: $transition-smooth;
+    &:hover { background: $gray-300; color: $gray-700; }
+  }
+}
+
+.ss-list {
+  list-style: none;
+  margin: 0;
+  padding: 6px 0;
+  max-height: 240px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar { width: 5px; }
+  &::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar-thumb { background: $gray-200; border-radius: 3px; }
+}
+
+.ss-option {
+  padding: 10px 16px;
+  font-size: 14px;
+  color: $gray-700;
+  cursor: pointer;
+  transition: background 0.12s ease;
+  line-height: 1.4;
+
+  &:hover { background: rgba($primary, 0.06); color: $primary; }
+
+  &--selected {
+    background: rgba($primary, 0.09);
+    color: $primary;
+    font-weight: 600;
+  }
+
+  &--empty-val {
+    color: $gray-400;
+    font-style: italic;
+    font-size: 13px;
+  }
+
+  &--no-result {
+    color: $gray-400;
+    text-align: center;
+    font-size: 13px;
+    padding: 16px;
+    cursor: default;
+  }
+}
+
+.ss-highlight {
+  background: rgba($accent, 0.25);
+  color: darken($accent, 25%);
+  border-radius: 2px;
+  padding: 0 1px;
+  font-weight: 700;
+}
+
+// ─── Keyframes ───────────────────────────────────────────────────────────────
+@keyframes cp-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}

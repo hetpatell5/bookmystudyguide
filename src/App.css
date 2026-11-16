@@ -1,0 +1,94 @@
+/* =========================================
+   1. GLOBAL RESET & VARIABLES
+   ========================================= */
+:root {
+  --primary-color: #fcb53b;
+  --text-dark: #111;
+  --text-light: #fff;
+  --bg-color: #ffffff;
+  --font-main: "Times New Roman", Times, serif;
+  --container-gutter: clamp(14px, 3vw, 32px);
+  --body-bg: #F3F5FC;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  max-width: 100%;
+  font-family: var(--font-main);
+  background-color: var(--body-bg);
+  color: var(--text-dark);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Typography Resets */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+p {
+  display: block;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =========================================
+   2. CONTAINER LAYOUT (Responsive)
+   ========================================= */
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-left: var(--container-gutter);
+  padding-right: var(--container-gutter);
+}
+
+/* Tablet (Max Width 1024px) */
+@media screen and (max-width: 1024px) {
+  .container {
+    width: 100%;
+  }
+}
+
+/* Mobile (Max Width 570px) */
+@media screen and (max-width: 570px) {
+  .container {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}

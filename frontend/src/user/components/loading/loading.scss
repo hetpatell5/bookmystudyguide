@@ -1,0 +1,100 @@
+@import "../../../_variables.scss";
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: 99999;
+  font-family: 'Outfit', sans-serif;
+
+  .loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    animation: fadeIn 0.5s ease;
+  }
+
+  .premium-loader {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .book-outer {
+      width: 60px;
+      height: 45px;
+      border: 4px solid $primary;
+      border-radius: 4px;
+      position: relative;
+      animation: pulse 1.5s infinite ease-in-out;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: $primary;
+        transform: translateX(-50%);
+      }
+    }
+
+    .shimmer-circle {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(30, 58, 138, 0.15) 0%, transparent 70%);
+      animation: expand 2s infinite ease-out;
+    }
+  }
+
+  .loading-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1e293b;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    
+    .dots {
+      display: inline-block;
+      width: 24px;
+      text-align: left;
+      animation: dots 1.5s infinite;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 20px rgba(30, 58, 138, 0.3); }
+}
+
+@keyframes expand {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes dots {
+  0% { content: "."; }
+  33% { content: ".."; }
+  66% { content: "..."; }
+  100% { content: ""; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,94 @@
+.page { animation: fadeIn .2s ease; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 700px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.cardIcon {
+  width: 40px; height: 40px;
+  border-radius: var(--r-lg);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.cardTitle { font-size: 14px; font-weight: 600; }
+.cardSub   { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+
+.bigNum {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.metaItem {
+  padding: 12px;
+  background: var(--bg-box);
+  border-radius: var(--r-md);
+  border: 1px solid var(--border-default);
+}
+
+.metaVal   { font-size: 16px; font-weight: 700; }
+.metaLabel { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+.barList { display: flex; flex-direction: column; gap: 14px; }
+
+.barItem { display: flex; flex-direction: column; gap: 6px; }
+
+.barMeta { display: flex; align-items: center; justify-content: space-between; }
+
+.barTrack {
+  height: 6px;
+  background: var(--bg-box);
+  border-radius: 99px;
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width .4s ease;
+  min-width: 2px;
+}
+
+.note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--color-info-bg);
+  border: 1px solid var(--color-info);
+  border-radius: var(--r-md);
+  font-size: 12px;
+  color: var(--color-info);
+  line-height: 1.5;
+}
+
+.note code {
+  background: rgba(0,0,0,.07);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-family: monospace;
+}

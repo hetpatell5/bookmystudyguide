@@ -1,0 +1,3 @@
+.page { display: flex; flex-direction: column; gap: 20px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin .65s linear infinite; }

@@ -1,0 +1,34 @@
+.container { animation: fadeIn 0.25s ease; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
+
+.layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 20px; align-items: flex-start;
+}
+
+.formCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm); overflow: hidden;
+  position: sticky; top: calc(var(--topbar-height) + 24px);
+}
+
+.itemRow {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  gap: 10px; transition: var(--transition-fast);
+}
+.itemRow:last-child { border-bottom: none; }
+.itemRow:hover { background: var(--bg-subtle); }
+.itemName  { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+.itemMeta  { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.itemPrice { font-size: 13px; font-weight: 800; color: var(--brand-secondary); white-space: nowrap; }
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .formCard { position: static; }
+}

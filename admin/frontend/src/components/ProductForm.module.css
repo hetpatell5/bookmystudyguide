@@ -1,0 +1,138 @@
+.formModal {
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.scrollBody {
+    overflow-y: auto;
+    max-height: calc(90vh - 120px);
+}
+
+.section {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.sectionTitle {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 12px;
+}
+
+.sectionTitleRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.quillWrap :global(.ql-container) {
+    font-size: 13px;
+    border-bottom-left-radius: var(--r-md);
+    border-bottom-right-radius: var(--r-md);
+}
+
+.quillWrap :global(.ql-toolbar) {
+    border-top-left-radius: var(--r-md);
+    border-top-right-radius: var(--r-md);
+    background: var(--bg-subtle);
+}
+
+.quillWrap :global(.ql-editor) {
+    min-height: 120px;
+    color: var(--text-primary);
+}
+
+.imageGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.imgThumb {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    border-radius: var(--r-md);
+    overflow: hidden;
+    border: 1px solid var(--border-default);
+}
+
+.imgThumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.imgRemove {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    background: rgba(0, 0, 0, .6);
+    border: none;
+    color: #fff;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+}
+
+.imgUpload {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--r-md);
+    border: 2px dashed var(--border-default);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    gap: 4px;
+    color: var(--text-muted);
+    font-size: 11px;
+    transition: var(--t-fast);
+}
+
+.imgUpload:hover {
+    border-color: var(--brand-secondary);
+    color: var(--brand-secondary);
+}
+
+.linksTable {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.linkRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr auto;
+    gap: 8px;
+    align-items: center;
+}
+
+.spin {
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

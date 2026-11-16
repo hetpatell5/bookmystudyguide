@@ -1,0 +1,325 @@
+// BMSG Design System — Component Mixins
+// Import this file in any component SCSS to get shared styles
+// Usage: @import "../../../styles/design-system";
+
+@import "../../_variables.scss";
+
+// ─────────────────────────────────────────────
+// BUTTONS
+// ─────────────────────────────────────────────
+
+@mixin btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: $font-primary;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: $radius-sm;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: $transition-smooth;
+  text-decoration: none;
+  min-height: 44px;
+  padding: 11px 24px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+@mixin btn-primary {
+  @include btn-base;
+  background: $primary;
+  color: $white;
+  border-color: $primary;
+
+  &:hover, &:focus-visible {
+    background: $primary-dark;
+    border-color: $primary-dark;
+    transform: translateY(-1px);
+    box-shadow: $shadow-md;
+    color: $white;
+  }
+
+  &:active { transform: translateY(0); }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+@mixin btn-gold {
+  @include btn-base;
+  background: $accent;
+  color: $primary;
+  border-color: $accent;
+
+  &:hover, &:focus-visible {
+    background: $accent-dark;
+    border-color: $accent-dark;
+    transform: translateY(-1px);
+    box-shadow: $shadow-md;
+    color: $primary;
+  }
+
+  &:active { transform: translateY(0); }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+@mixin btn-outline {
+  @include btn-base;
+  background: transparent;
+  color: $primary;
+  border-color: $primary;
+
+  &:hover, &:focus-visible {
+    background: $primary;
+    color: $white;
+    transform: translateY(-1px);
+  }
+
+  &:active { transform: translateY(0); }
+}
+
+@mixin btn-outline-gold {
+  @include btn-base;
+  background: transparent;
+  color: $accent-dark;
+  border-color: $accent;
+
+  &:hover, &:focus-visible {
+    background: $accent;
+    color: $primary;
+    transform: translateY(-1px);
+  }
+}
+
+@mixin btn-ghost {
+  @include btn-base;
+  background: rgba($primary, 0.06);
+  color: $primary;
+  border-color: transparent;
+
+  &:hover, &:focus-visible {
+    background: rgba($primary, 0.12);
+    transform: translateY(-1px);
+  }
+}
+
+// ─────────────────────────────────────────────
+// CARDS
+// ─────────────────────────────────────────────
+
+@mixin card-base {
+  background: $bg-card;
+  border-radius: $radius-md;
+  box-shadow: $shadow-md;
+  border: 1px solid rgba($gray-200, 0.6);
+  overflow: hidden;
+  transition: $transition-smooth;
+
+  &:hover {
+    box-shadow: $shadow-lg;
+    transform: translateY(-2px);
+  }
+}
+
+@mixin card-flat {
+  background: $bg-card;
+  border-radius: $radius-md;
+  border: 1.5px solid $gray-200;
+  overflow: hidden;
+  transition: $transition-smooth;
+}
+
+@mixin glass-card {
+  background: $glass-bg;
+  backdrop-filter: blur($glass-blur);
+  -webkit-backdrop-filter: blur($glass-blur);
+  border: 1px solid $glass-border;
+  border-radius: $radius-md;
+  box-shadow: $shadow-lg;
+}
+
+// ─────────────────────────────────────────────
+// SECTIONS
+// ─────────────────────────────────────────────
+
+@mixin section-container {
+  width: 100%;
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 80px) clamp(16px, 3vw, 32px);
+}
+
+@mixin section-padding {
+  padding: clamp(40px, 6vw, 80px) 0;
+}
+
+// ─────────────────────────────────────────────
+// TYPOGRAPHY
+// ─────────────────────────────────────────────
+
+@mixin page-heading {
+  font-family: $font-primary;
+  font-size: clamp(1.9rem, 5vw, 3rem);
+  font-weight: 900;
+  color: $text-primary;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+@mixin section-heading {
+  font-family: $font-primary;
+  font-size: clamp(1.55rem, 4vw, 2.25rem);
+  font-weight: 800;
+  color: $text-primary;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+@mixin sub-heading {
+  font-family: $font-primary;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  font-weight: 700;
+  color: $text-secondary;
+  line-height: 1.35;
+}
+
+@mixin body-text {
+  font-family: $font-primary;
+  font-size: 0.98rem;
+  color: $text-secondary;
+  line-height: 1.7;
+}
+
+@mixin label-text {
+  font-family: $font-primary;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $text-muted;
+}
+
+// ─────────────────────────────────────────────
+// BADGES
+// ─────────────────────────────────────────────
+
+@mixin badge-base {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+@mixin badge-primary {
+  @include badge-base;
+  background: rgba($primary, 0.1);
+  color: $primary;
+  border: 1px solid rgba($primary, 0.2);
+}
+
+@mixin badge-gold {
+  @include badge-base;
+  background: rgba($accent, 0.12);
+  color: darken($accent, 30%);
+  border: 1px solid rgba($accent, 0.3);
+}
+
+@mixin badge-success {
+  @include badge-base;
+  background: rgba($success, 0.1);
+  color: darken($success, 10%);
+  border: 1px solid rgba($success, 0.2);
+}
+
+@mixin badge-danger {
+  @include badge-base;
+  background: rgba($danger, 0.1);
+  color: darken($danger, 10%);
+  border: 1px solid rgba($danger, 0.2);
+}
+
+// ─────────────────────────────────────────────
+// INPUTS
+// ─────────────────────────────────────────────
+
+@mixin input-base {
+  font-family: $font-primary;
+  width: 100%;
+  padding: 11px 16px;
+  background: $gray-50;
+  border: 1.5px solid $gray-200;
+  border-radius: $radius-sm;
+  color: $text-primary;
+  font-size: 0.95rem;
+  outline: none;
+  transition: $transition-smooth;
+
+  &::placeholder { color: $text-muted; opacity: 0.7; }
+
+  &:focus {
+    background: $white;
+    border-color: $primary;
+    box-shadow: 0 0 0 4px rgba($primary, 0.12);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+@mixin input-label {
+  display: block;
+  font-family: $font-primary;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: $text-secondary;
+  margin-bottom: 6px;
+}
+
+// ─────────────────────────────────────────────
+// GRADIENTS (text)
+// ─────────────────────────────────────────────
+
+@mixin gradient-text-primary {
+  background: $gradient-primary;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@mixin gradient-text-gold {
+  background: $gradient-gold;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// ─────────────────────────────────────────────
+// DIVIDER
+// ─────────────────────────────────────────────
+
+@mixin divider {
+  width: 48px;
+  height: 4px;
+  background: $gradient-gold;
+  border-radius: 2px;
+  margin: 12px 0;
+}

@@ -1,0 +1,128 @@
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-left: clamp(14px, 3vw, 32px);
+  padding-right: clamp(14px, 3vw, 32px);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+p {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global Body Calibration */
+body {
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* 
+   REFINED ADMIN TEXT STANDARDIZATION
+   Ensuring all admin containers use high-contrast primary text
+   without breaking dark mode compatibility.
+*/
+.admin-dashboard,
+.admin-hierarchy-container,
+.inventory-container,
+.user-container,
+.user-wrapper,
+.content-area,
+.modal-content,
+.all-orders-container,
+.add-product-container,
+.YearSemesterManagement,
+.hardcopy-orders-container,
+.analytics-page {
+
+  input,
+  textarea,
+  select {
+    color: var(--text-primary) !important;
+    background: var(--bg-card);
+    border: 1px solid var(--text-light);
+
+    &::placeholder {
+      color: var(--text-muted) !important;
+    }
+  }
+
+  table {
+    thead th {
+      color: var(--text-primary) !important;
+      font-weight: 700 !important;
+      background: var(--bg-main);
+    }
+
+    tbody td {
+      color: var(--text-secondary) !important;
+    }
+  }
+
+  label {
+    color: var(--text-primary) !important;
+    font-weight: 600;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--text-primary) !important;
+  }
+}
+
+/* Custom cursor style */
+.cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.45), 0 0 24px rgba(99, 102, 241, 0.35);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 99;
+  transition: width 0.2s, height 0.2s;
+  background-color: transparent;
+  border: 3px solid var(--text-primary);
+  border-radius: 50%;
+
+  /* Expanding the cursor on mouse click */
+  &.expand {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Mouse trail effect */
+.trail {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(rgb(0, 255, 255), rgb(255, 0, 255));
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  z-index: 999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out, opacity 0.3s ease-out;
+}

@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BMSG — Page Structure Guide</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1e3a8a;
+      --navy-dark: #162d6e;
+      --navy-light: #dbeafe;
+      --gold: #f5b800;
+      --gold-light: #fef9e7;
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-400: #94a3b8;
+      --gray-600: #475569;
+      --gray-800: #1e293b;
+      --green: #10b981;
+      --green-light: #d1fae5;
+      --purple: #7c3aed;
+      --purple-light: #ede9fe;
+      --orange: #f59e0b;
+      --orange-light: #fef3c7;
+      --red: #ef4444;
+      --red-light: #fee2e2;
+      --teal: #0d9488;
+      --teal-light: #ccfbf1;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--gray-50);
+      color: var(--gray-800);
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    .header {
+      background: var(--navy);
+      color: white;
+      padding: 32px 40px;
+      border-bottom: 4px solid var(--gold);
+    }
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .header h1 span { color: var(--gold); }
+    .header p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      margin-top: 4px;
+    }
+    .header-stats {
+      display: flex;
+      gap: 24px;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--gold);
+      display: block;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* LEGEND */
+    .legend {
+      background: white;
+      border-bottom: 1px solid var(--gray-200);
+      padding: 16px 40px;
+    }
+    .legend-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .legend span {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-600);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .badge-account { background: var(--purple-light); color: var(--purple); }
+    .badge-shop    { background: var(--green-light);  color: var(--green);  }
+    .badge-catalog { background: var(--navy-light);   color: var(--navy);   }
+    .badge-content { background: var(--orange-light); color: var(--orange); }
+    .badge-blog    { background: var(--teal-light);   color: var(--teal);   }
+    .badge-core    { background: #fce7f3; color: #be185d; }
+
+    /* MAIN */
+    .main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+
+    /* SECTION HEADINGS */
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 48px 0 24px;
+    }
+    .section-heading:first-child { margin-top: 0; }
+    .section-heading h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .section-line {
+      flex: 1;
+      height: 2px;
+      background: var(--gray-200);
+      border-radius: 999px;
+    }
+
+    /* CARDS GRID */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 20px;
+    }
+
+    /* PAGE CARD */
+    .page-card {
+      background: white;
+      border-radius: 16px;
+      border: 1px solid var(--gray-200);
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .page-card:hover {
+      box-shadow: 0 8px 32px rgba(30,58,138,0.12);
+      transform: translateY(-3px);
+    }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid var(--gray-100);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .card-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--gray-800);
+      margin-bottom: 4px;
+    }
+    .card-route {
+      font-size: 12px;
+      font-family: 'Courier New', monospace;
+      background: var(--navy-light);
+      color: var(--navy);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      display: inline-block;
+    }
+    .card-file {
+      font-size: 11px;
+      color: var(--gray-400);
+      margin-top: 6px;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* SECTIONS LIST */
+    .card-body {
+      padding: 16px 24px 20px;
+    }
+    .sections-label {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray-400);
+      margin-bottom: 10px;
+    }
+    .section-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .section-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--gray-600);
+      line-height: 1.4;
+    }
+    .section-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .section-dot.navy { background: var(--navy); }
+    .section-dot.green { background: var(--green); }
+
+    /* COMPONENT TAG */
+    .comp-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--gray-100);
+      color: var(--gray-600);
+      padding: 2px 7px;
+      border-radius: 5px;
+      margin-top: 8px;
+      margin-right: 4px;
+    }
+    .comp-tag.shared { background: #fef9e7; color: #92400e; border: 1px solid #fde68a; }
+
+    .card-footer {
+      padding: 12px 24px;
+      background: var(--gray-50);
+      border-top: 1px solid var(--gray-100);
+    }
+    .shared-note {
+      font-size: 11px;
+      color: var(--gray-400);
+    }
+    .shared-note strong { color: var(--gray-600); }
+
+    /* SHARED COMPONENTS BOX */
+    .shared-components-box {
+      background: white;
+      border-radius: 16px;
+      border: 2px solid var(--gold);
+      padding: 28px 32px;
+      margin-bottom: 40px;
+    }
+    .shared-components-box h3 {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .shared-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+    .shared-item {
+      background: var(--gray-50);
+      border-radius: 10px;
+      padding: 14px 16px;
+      border: 1px solid var(--gray-200);
+    }
+    .shared-item-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+    .shared-item-path {
+      font-size: 11px;
+      color: var(--gray-400);
+      font-family: 'Courier New', monospace;
+    }
+    .shared-item-desc {
+      font-size: 12px;
+      color: var(--gray-600);
+      margin-top: 4px;
+    }
+
+    /* FLOW DIAGRAM */
+    .flow-box {
+      background: white;
+      border-radius: 16px;
+      border: 1px solid var(--gray-200);
+      padding: 28px 32px;
+      margin-bottom: 40px;
+    }
+    .flow-box h3 {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+    .flow-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .flow-node {
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .flow-node.root { background: var(--navy); color: white; }
+    .flow-node.layout { background: var(--navy-light); color: var(--navy); }
+    .flow-node.page { background: var(--gray-100); color: var(--gray-800); border: 1px solid var(--gray-200); }
+    .flow-node.component { background: var(--gold-light); color: #92400e; border: 1px solid #fde68a; }
+    .flow-arrow { color: var(--gray-400); font-size: 18px; }
+
+    /* FOOTER */
+    .guide-footer {
+      text-align: center;
+      padding: 40px;
+      color: var(--gray-400);
+      font-size: 13px;
+      border-top: 1px solid var(--gray-200);
+      margin-top: 60px;
+    }
+    .guide-footer strong { color: var(--navy); }
+
+    @media (max-width: 768px) {
+      .header { padding: 24px 20px; }
+      .main { padding: 24px 16px; }
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div>
+      <h1>BMSG — <span>Page Structure Guide</span></h1>
+      <p>Every user-facing route · responsible file · UI sections & components</p>
+    </div>
+    <div class="header-stats">
+      <div class="stat"><span class="stat-num">29</span><span class="stat-label">Pages</span></div>
+      <div class="stat"><span class="stat-num">6</span><span class="stat-label">Groups</span></div>
+      <div class="stat"><span class="stat-num">8+</span><span class="stat-label">Shared Components</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="legend-inner">
+    <span>Category:</span>
+    <span class="badge badge-core">🏠 Core</span>
+    <span class="badge badge-account">👤 Account</span>
+    <span class="badge badge-shop">🛒 Shop</span>
+    <span class="badge badge-catalog">📚 Catalog</span>
+    <span class="badge badge-content">📄 Content</span>
+    <span class="badge badge-blog">📝 Blog</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- ROUTING FLOW -->
+  <div class="flow-box">
+    <h3>⚡ Routing Architecture</h3>
+    <div class="flow-row">
+      <span class="flow-node root">App.js</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node layout">routing/routing.jsx</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node layout">UserLayout.jsx (Header + Footer wrapper)</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node page">Page Component</span>
+    </div>
+    <div class="flow-row">
+      <span class="flow-node root">App.js</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node layout">routing/routing.jsx</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node page">/auth (standalone — no layout)</span>
+    </div>
+    <p style="font-size:13px; color:#64748b; margin-top:8px;">All routes under <code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;">&lt;UserLayout&gt;</code> automatically get the Header and Footer. The <strong>/auth</strong> route is standalone.</p>
+  </div>
+
+  <!-- SHARED COMPONENTS -->
+  <div class="shared-components-box">
+    <h3>🔗 Shared Components (appear on multiple pages)</h3>
+    <div class="shared-grid">
+      <div class="shared-item">
+        <div class="shared-item-name">Header</div>
+        <div class="shared-item-path">user/components/header/header.jsx</div>
+        <div class="shared-item-desc">Nav bar, search, cart icon, auth buttons — on every page via UserLayout</div>
+      </div>
+      <div class="shared-item">
+        <div class="shared-item-name">Footer</div>
+        <div class="shared-item-path">user/components/footer/footer.jsx</div>
+        <div class="shared-item-desc">Links, social icons, newsletter CTA — on every page via UserLayout</div>
+      </div>
+      <div class="shared-item">
+        <div class="shared-item-name">ProductPage</div>
+        <div class="shared-item-path">user/components/productpage/productpage.jsx</div>
+        <div class="shared-item-desc">Full product detail view used at /productpage/:id</div>
+      </div>
+      <div class="shared-item">
+        <div class="shared-item-name">ComboDetail</div>
+        <div class="shared-item-path">user/components/ComboDetail/ComboDetail.jsx</div>
+        <div class="shared-item-desc">Combo bundle detail used at /combo/:id</div>
+      </div>
+      <div class="shared-item">
+        <div class="shared-item-name">Loading Spinner</div>
+        <div class="shared-item-path">user/components/loading/loading.jsx</div>
+        <div class="shared-item-desc">Fallback shown during lazy-load transitions between pages</div>
+      </div>
+      <div class="shared-item">
+        <div class="shared-item-name">WhatsApp Button</div>
+        <div class="shared-item-path">user/components/utils/WhatsAppButton.jsx</div>
+        <div class="shared-item-desc">Floating CTA button — globally rendered in App.js</div>
+      </div>
+      <div class="shared-item">
+        <div class="shared-item-name">Advertisements</div>
+        <div class="shared-item-path">user/components/advertisements/</div>
+        <div class="shared-item-desc">Banner/promo ads used on Home and possibly catalog pages</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CORE PAGES -->
+  <div class="section-heading">
+    <span class="badge badge-core">🏠 Core Pages</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="cards-grid">
+
+    <!-- HOME -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Home</div>
+          <span class="card-route">/</span>
+          <div class="card-file">user/pages/home/home.jsx</div>
+        </div>
+        <span class="badge badge-core">Core</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Hero Banner (herobaner/Herobaner.jsx)</li>
+          <li class="section-item"><span class="section-dot"></span>Category / Degree Selector</li>
+          <li class="section-item"><span class="section-dot navy"></span>Featured Products Grid (product cards)</li>
+          <li class="section-item"><span class="section-dot"></span>Synopsis / Projects Slider</li>
+          <li class="section-item"><span class="section-dot"></span>Testimonials Section</li>
+          <li class="section-item"><span class="section-dot"></span>Blog Preview List</li>
+          <li class="section-item"><span class="section-dot"></span>IGNOU Section (portal links)</li>
+          <li class="section-item"><span class="section-dot"></span>Services / Info Section</li>
+          <li class="section-item"><span class="section-dot"></span>FAQ Accordion Section</li>
+        </ul>
+        <div style="margin-top:10px;">
+          <span class="comp-tag shared">⚠ Most complex page — 9 sections</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="shared-note"><strong>Contains:</strong> Product cards, degree navigation entry point, blog previews</div>
+      </div>
+    </div>
+
+    <!-- AUTH -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Auth / Login / Register</div>
+          <span class="card-route">/auth</span>
+          <div class="card-file">user/pages/auth/auth/auth.jsx</div>
+        </div>
+        <span class="badge badge-core">Core</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Left Panel — BMSG branding + nav pills</li>
+          <li class="section-item"><span class="section-dot navy"></span>Login Form (Email/Phone + Password)</li>
+          <li class="section-item"><span class="section-dot navy"></span>Register Form — 3-Step Stepper</li>
+          <li class="section-item"><span class="section-dot"></span>Forgot Password Mode</li>
+          <li class="section-item"><span class="section-dot"></span>OTP Verification Screen</li>
+          <li class="section-item"><span class="section-dot"></span>Google Login Button</li>
+        </ul>
+        <div style="margin-top:10px;">
+          <span class="comp-tag">Stepper component</span>
+          <span class="comp-tag shared">⚠ Standalone — no Header/Footer</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="shared-note">Only page without UserLayout wrapper</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ACCOUNT PAGES -->
+  <div class="section-heading">
+    <span class="badge badge-account">👤 Account Pages</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="cards-grid">
+
+    <!-- PROFILE -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Profile</div>
+          <span class="card-route">/profile</span>
+          <div class="card-file">user/pages/account/profile/profile.jsx</div>
+        </div>
+        <span class="badge badge-account">Account</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Avatar + Name + Member Badge Header</li>
+          <li class="section-item"><span class="section-dot"></span>Edit / Logout Buttons</li>
+          <li class="section-item"><span class="section-dot navy"></span>Profile Info Grid (Email, Phone, Course, University, Address)</li>
+          <li class="section-item"><span class="section-dot"></span>Password Change Card (collapsible)</li>
+          <li class="section-item"><span class="section-dot"></span>Quick Action Cards (My Orders, Cart, Home)</li>
+        </ul>
+      </div>
+      <div class="card-footer">
+        <div class="shared-note"><strong>SCSS:</strong> profile.scss · <strong>Auth required</strong></div>
+      </div>
+    </div>
+
+    <!-- MY ORDERS -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">My Orders</div>
+          <span class="card-route">/myorder</span>
+          <div class="card-file">user/pages/account/myorders/MyOrder.jsx</div>
+        </div>
+        <span class="badge badge-account">Account</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Header with Order Count Badge</li>
+          <li class="section-item"><span class="section-dot navy"></span>Order Cards Grid (Order ID, Status Pill, Product list)</li>
+          <li class="section-item"><span class="section-dot"></span>Download Buttons (Soft Copies)</li>
+          <li class="section-item"><span class="section-dot"></span>Download Invoice Button</li>
+          <li class="section-item"><span class="section-dot"></span>Track Order Modal (AWB + Shipment Timeline)</li>
+        </ul>
+      </div>
+      <div class="card-footer">
+        <div class="shared-note"><strong>Auth required</strong> · Track order opens modal overlay</div>
+      </div>
+    </div>
+
+    <!-- WISHLIST -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Wishlist</div>
+          <span class="card-route">/wishlist</span>
+          <div class="card-file">user/pages/account/wishlist/Wishlist.jsx</div>
+        </div>
+        <span class="badge badge-account">Account</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Header with Item Count</li>
+          <li class="section-item"><span class="section-dot navy"></span>Wishlist Cards Grid (Image, Name, Price)</li>
+          <li class="section-item"><span class="section-dot"></span>Add to Cart + View Details buttons per card</li>
+          <li class="section-item"><span class="section-dot"></span>Remove from Wishlist button</li>
+          <li class="section-item"><span class="section-dot"></span>Empty State (heart icon + Shop Now)</li>
+        </ul>
+      </div>
+      <div class="card-footer">
+        <div class="shared-note"><strong>Context:</strong> WishlistContext + CartContext</div>
+      </div>
+    </div>
+
+    <!-- TRACK ORDER -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Track Order</div>
+          <span class="card-route">/track-order</span>
+          <div class="card-file">user/pages/account/trackorder/TrackOrder.jsx</div>
+        </div>
+        <span class="badge badge-account">Account</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Order ID / AWB Input Form</li>
+          <li class="section-item"><span class="section-dot navy"></span>Shipment Timeline (location, date, scans)</li>
+          <li class="section-item"><span class="section-dot"></span>Courier + Status Info</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SHOP PAGES -->
+  <div class="section-heading">
+    <span class="badge badge-shop">🛒 Shop Pages</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="cards-grid">
+
+    <!-- CART -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Cart</div>
+          <span class="card-route">/cart</span>
+          <div class="card-file">user/pages/shop/cart/Cart.jsx</div>
+        </div>
+        <span class="badge badge-shop">Shop</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Page Header with Item Count</li>
+          <li class="section-item"><span class="section-dot navy"></span>Cart Items List (Image, Name, Type Badge, Qty Controls, Price, Remove)</li>
+          <li class="section-item"><span class="section-dot"></span>Continue Shopping + Clear Cart buttons</li>
+          <li class="section-item"><span class="section-dot green"></span>Order Summary Card (Subtotal, Shipping, Tax, Total)</li>
+          <li class="section-item"><span class="section-dot"></span>Free Shipping Progress Bar</li>
+          <li class="section-item"><span class="section-dot"></span>Trust Badges (Secure, Fast Delivery, Easy Returns)</li>
+        </ul>
+      </div>
+      <div class="card-footer">
+        <div class="shared-note"><strong>Context:</strong> CartContext</div>
+      </div>
+    </div>
+
+    <!-- CHECKOUT -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Checkout</div>
+          <span class="card-route">/checkout</span>
+          <div class="card-file">user/pages/shop/checkout/Checkout.jsx</div>
+        </div>
+        <span class="badge badge-shop">Shop</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot navy"></span>Step 1 — Contact Details Form</li>
+          <li class="section-item"><span class="section-dot navy"></span>Step 2 — Delivery Address (Pincode auto-lookup)</li>
+          <li class="section-item"><span class="section-dot navy"></span>Step 3 — Payment Method (Full / Half COD)</li>
+          <li class="section-item"><span class="section-dot green"></span>Order Summary (Coupon Code, Items, Discount, Total)</li>
+          <li class="section-item"><span class="section-dot"></span>Razorpay Payment Button</li>
+          <li class="section-item"><span class="section-dot green"></span>Success Screen (Download Soft Copies)</li>
+        </ul>
+        <div style="margin-top:10px;">
+          <span class="comp-tag shared">⚠ Razorpay integration</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CATALOG PAGES -->
+  <div class="section-heading">
+    <span class="badge badge-catalog">📚 Catalog Pages</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="cards-grid">
+
+    <!-- PRODUCT PAGE -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Product Detail</div>
+          <span class="card-route">/productpage/:id</span>
+          <div class="card-file">user/components/productpage/productpage.jsx</div>
+        </div>
+        <span class="badge badge-catalog">Catalog</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Image Gallery (main + thumbnails slider)</li>
+          <li class="section-item"><span class="section-dot navy"></span>Title, Category Badge, Rating, Reviews</li>
+          <li class="section-item"><span class="section-dot"></span>Price Display (Current + MRP/Discount)</li>
+          <li class="section-item"><span class="section-dot"></span>Academic Specs (Year, Semester, etc.)</li>
+          <li class="section-item"><span class="section-dot"></span>Variant Selection (subject variants)</li>
+          <li class="section-item"><span class="section-dot green"></span>CTA Buttons (Add to Cart, Buy Now, Wishlist, Share)</li>
+          <li class="section-item"><span class="section-dot"></span>Trust Section + Description</li>
+        </ul>
+        <span class="comp-tag shared">⚠ Shared component (not a page)</span>
+      </div>
+    </div>
+
+    <!-- BEST SELLERS -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Best Sellers</div>
+          <span class="card-route">/best-sellers</span>
+          <div class="card-file">user/pages/catalog/best-sellers/BestSellers.jsx</div>
+        </div>
+        <span class="badge badge-catalog">Catalog</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Hero Section (Curated Collection badge)</li>
+          <li class="section-item"><span class="section-dot navy"></span>Products Grid — Product Cards with:
+            Image, Wishlist button, Discount tag, Top Rated badge, Title, Price</li>
+          <li class="section-item"><span class="section-dot green"></span>Buy Now + Add to Cart per card</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- COMBO BOOKS -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Combo Books</div>
+          <span class="card-route">/combo-books</span>
+          <div class="card-file">user/pages/catalog/comboproduct/comboproduct.jsx</div>
+        </div>
+        <span class="badge badge-catalog">Catalog</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Hero Section (Elite Combo Bundles)</li>
+          <li class="section-item"><span class="section-dot navy"></span>Combo Cards Grid — Bundle image, Preview (first 3 items), Discount, Low Stock pill</li>
+          <li class="section-item"><span class="section-dot"></span>Category + Language Tags per card</li>
+          <li class="section-item"><span class="section-dot green"></span>Add to Cart / Sold Out button</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- COMBO DETAIL -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Combo Detail</div>
+          <span class="card-route">/combo/:id</span>
+          <div class="card-file">user/components/ComboDetail/ComboDetail.jsx</div>
+        </div>
+        <span class="badge badge-catalog">Catalog</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Breadcrumb Navigation</li>
+          <li class="section-item"><span class="section-dot"></span>Bundle Image Carousel/Gallery</li>
+          <li class="section-item"><span class="section-dot navy"></span>Category Badge, Title, Rating, Price Card</li>
+          <li class="section-item"><span class="section-dot"></span>Variant Picker (Soft/Hard Copy)</li>
+          <li class="section-item"><span class="section-dot green"></span>CTA Buttons (Add to Cart, Buy Now, Wishlist, Share)</li>
+          <li class="section-item"><span class="section-dot"></span>Student Trust Section + Bundle Description</li>
+          <li class="section-item"><span class="section-dot"></span>Mobile Fixed Action Bar</li>
+        </ul>
+        <span class="comp-tag shared">⚠ Shared component (not a page)</span>
+      </div>
+    </div>
+
+    <!-- MAIN DEGREES -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Degree Browser — Level 1</div>
+          <span class="card-route">/main-degrees/:bookId</span>
+          <div class="card-file">user/pages/catalog/frontdegrees/MainDegreesPage.jsx</div>
+        </div>
+        <span class="badge badge-catalog">Catalog</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Back Button + Page Header</li>
+          <li class="section-item"><span class="section-dot"></span>Search Bar (filter degrees)</li>
+          <li class="section-item"><span class="section-dot navy"></span>Degree Cards Grid (Name + shine effect + chevron)</li>
+          <li class="section-item"><span class="section-dot"></span>Empty State message</li>
+        </ul>
+        <div style="margin-top:10px;">
+          <span class="comp-tag">Step 1 of 3 in degree navigation</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUB DEGREES -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Degree Browser — Level 2</div>
+          <span class="card-route">/sub-degrees/:bookId/:mainDegreeId</span>
+          <div class="card-file">user/pages/catalog/subdegrees/SubDegreesPage.jsx</div>
+        </div>
+        <span class="badge badge-catalog">Catalog</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Back Button + Programme Selection Header</li>
+          <li class="section-item"><span class="section-dot"></span>Search Bar</li>
+          <li class="section-item"><span class="section-dot navy"></span>Programme Cards Grid (GraduationCap icon, name, "View Materials" link)</li>
+          <li class="section-item"><span class="section-dot"></span>Empty State message</li>
+        </ul>
+        <div style="margin-top:10px;">
+          <span class="comp-tag">Step 2 of 3 in degree navigation</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORIZED PRODUCTS -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Degree Browser — Level 3 (Products)</div>
+          <span class="card-route">/categorized-products/:bookId/:mainDegreeId/:subDegreeId</span>
+          <div class="card-file">user/pages/catalog/productlisting/CategorizedProductsPage.jsx</div>
+        </div>
+        <span class="badge badge-catalog">Catalog</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Back Button + Study Resources Header</li>
+          <li class="section-item"><span class="section-dot"></span>Year Selector Tabs</li>
+          <li class="section-item"><span class="section-dot navy"></span>Year → Semester → Category → Product Cards (Image, Badge, Price, Rating, Buy Now)</li>
+          <li class="section-item"><span class="section-dot"></span>Coming Soon Cards (unavailable materials)</li>
+          <li class="section-item"><span class="section-dot"></span>Empty State</li>
+        </ul>
+        <div style="margin-top:10px;">
+          <span class="comp-tag">Step 3 of 3 in degree navigation</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- IGNOU PORTAL -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">IGNOU Portal</div>
+          <span class="card-route">/ignou/:type</span>
+          <div class="card-file">user/pages/catalog/ignou-portal/IgnouPortal.jsx</div>
+        </div>
+        <span class="badge badge-catalog">Catalog</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Breadcrumb + Title + Subtitle Header</li>
+          <li class="section-item"><span class="section-dot navy"></span>Iframe Container (official IGNOU portal)</li>
+          <li class="section-item"><span class="section-dot"></span>Fallback — icon, description + External Link button</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PROJECTS LISTING -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Projects / Synopsis</div>
+          <span class="card-route">/projects</span>
+          <div class="card-file">user/pages/catalog/synopsis/SynopsisListing.jsx</div>
+        </div>
+        <span class="badge badge-catalog">Catalog</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Hero Banner</li>
+          <li class="section-item"><span class="section-dot navy"></span>Sidebar Filters (Search, Main Degree, Sub Degree dropdowns)</li>
+          <li class="section-item"><span class="section-dot"></span>Customization Info Card (WhatsApp link)</li>
+          <li class="section-item"><span class="section-dot navy"></span>Results Count + Grid/List Toggle + Synopsis Cards</li>
+          <li class="section-item"><span class="section-dot"></span>Empty State with Reset Filters</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PROJECT DETAIL -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Project Detail</div>
+          <span class="card-route">/projects/:id</span>
+          <div class="card-file">user/pages/catalog/synopsis/SynopsisDetail.jsx</div>
+        </div>
+        <span class="badge badge-catalog">Catalog</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Breadcrumb Navigation</li>
+          <li class="section-item"><span class="section-dot"></span>Gallery (Main image + Thumbnail strip)</li>
+          <li class="section-item"><span class="section-dot navy"></span>Badges, Title, Rating, Specs Card (Degree Path, Format, Language, Year)</li>
+          <li class="section-item"><span class="section-dot"></span>Price Card + Version Picker</li>
+          <li class="section-item"><span class="section-dot green"></span>CTA Buttons (Add to Cart, Buy Now, Wishlist, Share)</li>
+          <li class="section-item"><span class="section-dot"></span>Student Trust Section + Description Card</li>
+          <li class="section-item"><span class="section-dot"></span>Mobile Fixed Action Bar</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CUSTOMIZED PROJECT -->
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Customized Project Request</div>
+          <span class="card-route">/customized-project</span>
+          <div class="card-file">user/pages/catalog/customizedProject/CustomizedProject.jsx</div>
+        </div>
+        <span class="badge badge-catalog">Catalog</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Page Header</li>
+          <li class="section-item"><span class="section-dot navy"></span>Personal Details Form (Name, Mobile, Email)</li>
+          <li class="section-item"><span class="section-dot navy"></span>Academic Details Form (Degree, Sub Degree, Subject, Course, Enrollment)</li>
+          <li class="section-item"><span class="section-dot navy"></span>Project Needs Form (Detail textarea, Address)</li>
+          <li class="section-item"><span class="section-dot green"></span>Submit Button → Opens WhatsApp with pre-filled message</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CONTENT PAGES -->
+  <div class="section-heading">
+    <span class="badge badge-content">📄 Content Pages</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="cards-grid">
+
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">About</div>
+          <span class="card-route">/about</span>
+          <div class="card-file">user/pages/content/about/about.jsx</div>
+        </div>
+        <span class="badge badge-content">Content</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Hero (Mission statement)</li>
+          <li class="section-item"><span class="section-dot"></span>Company Story Section</li>
+          <li class="section-item"><span class="section-dot navy"></span>Core Values Cards (Academic Integrity, Student Success, Excellence)</li>
+          <li class="section-item"><span class="section-dot"></span>Stats Section (Learners, Questions, Guides — animated)</li>
+          <li class="section-item"><span class="section-dot"></span>Team Cards (Founder bios)</li>
+          <li class="section-item"><span class="section-dot green"></span>CTA Section (Browse / Contact buttons)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Contact</div>
+          <span class="card-route">/contact</span>
+          <div class="card-file">user/pages/content/contact/contact.jsx</div>
+        </div>
+        <span class="badge badge-content">Content</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Hero Section</li>
+          <li class="section-item"><span class="section-dot navy"></span>Info Cards (Address, Phone, Email, Office Hours)</li>
+          <li class="section-item"><span class="section-dot"></span>Social Media Links</li>
+          <li class="section-item"><span class="section-dot navy"></span>Contact Form (Name, Email, Phone, Message)</li>
+          <li class="section-item"><span class="section-dot"></span>Google Maps Iframe</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">FAQ</div>
+          <span class="card-route">/faq &nbsp;&nbsp; /faqs</span>
+          <div class="card-file">user/pages/content/faq/FaqPage.jsx</div>
+        </div>
+        <span class="badge badge-content">Content</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Hero Section ("How can we help you?")</li>
+          <li class="section-item"><span class="section-dot navy"></span>FAQ Accordion (question/answer collapsibles)</li>
+          <li class="section-item"><span class="section-dot green"></span>CTA Footer (Contact Support link)</li>
+        </ul>
+        <div style="margin-top:8px;"><span class="comp-tag shared">⚠ Two routes point here: /faq and /faqs</span></div>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Terms of Service</div>
+          <span class="card-route">/terms</span>
+          <div class="card-file">user/pages/content/terms/TermsOfService.jsx</div>
+        </div>
+        <span class="badge badge-content">Content</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Header (Scale icon, Title, Last Updated)</li>
+          <li class="section-item"><span class="section-dot"></span>Introduction Card</li>
+          <li class="section-item"><span class="section-dot navy"></span>Terms Grid — 4 Cards (User Accounts, Orders & Payments, IP, Prohibited Uses)</li>
+          <li class="section-item"><span class="section-dot"></span>Detailed Legal Sections (Acceptance, Shipping, Returns, Privacy)</li>
+          <li class="section-item"><span class="section-dot green"></span>Footer Contact Note</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Shipping Policy</div>
+          <span class="card-route">/shipping</span>
+          <div class="card-file">user/pages/content/shipping/shipping.jsx</div>
+        </div>
+        <span class="badge badge-content">Content</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Hero Section</li>
+          <li class="section-item"><span class="section-dot"></span>Trusted Partners (Shiprocket logo)</li>
+          <li class="section-item"><span class="section-dot navy"></span>Policy Cards (Processing Time, Delivery Timeline, Tracking, Damaged/Lost)</li>
+          <li class="section-item"><span class="section-dot"></span>Domestic Only Note</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Returns Policy</div>
+          <span class="card-route">/returns</span>
+          <div class="card-file">user/pages/content/returns/returns.jsx</div>
+        </div>
+        <span class="badge badge-content">Content</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Policy Header</li>
+          <li class="section-item"><span class="section-dot navy"></span>Policy Items (Digital Products, All Sales Final, Help Card)</li>
+          <li class="section-item"><span class="section-dot"></span>Policy Footer</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Careers</div>
+          <span class="card-route">/careers</span>
+          <div class="card-file">user/pages/content/careers/Careers.jsx</div>
+        </div>
+        <span class="badge badge-content">Content</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Hero (Mission statement, View Roles/Values buttons)</li>
+          <li class="section-item"><span class="section-dot navy"></span>Benefits Cards (Remote, Growth, Impactful, Inclusive)</li>
+          <li class="section-item"><span class="section-dot navy"></span>Open Positions (Subject Expert, Content Strategist, UI Designer)</li>
+          <li class="section-item"><span class="section-dot green"></span>Footer CTA (email for portfolios)</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BLOG PAGES -->
+  <div class="section-heading">
+    <span class="badge badge-blog">📝 Blog Pages</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="cards-grid">
+
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Blog Listing</div>
+          <span class="card-route">/blogs</span>
+          <div class="card-file">user/pages/content/blogs/BlogListing.jsx</div>
+        </div>
+        <span class="badge badge-blog">Blog</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Hero Section (Knowledge Hub)</li>
+          <li class="section-item"><span class="section-dot"></span>Search Bar</li>
+          <li class="section-item"><span class="section-dot navy"></span>Blog Cards Grid (Cover image, Category, Date, Title, Excerpt, Read More)</li>
+          <li class="section-item"><span class="section-dot green"></span>Newsletter CTA Card (email subscription)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Blog Detail</div>
+          <span class="card-route">/blog/:id</span>
+          <div class="card-file">user/pages/home/blogdetails/BlogDetails.jsx</div>
+        </div>
+        <span class="badge badge-blog">Blog</span>
+      </div>
+      <div class="card-body">
+        <div class="sections-label">UI Sections on this page</div>
+        <ul class="section-list">
+          <li class="section-item"><span class="section-dot"></span>Back Button</li>
+          <li class="section-item"><span class="section-dot navy"></span>Blog Header (Category label, Title, Author, Date, Reading Time)</li>
+          <li class="section-item"><span class="section-dot"></span>Hero Image</li>
+          <li class="section-item"><span class="section-dot"></span>Blog Content (HTML rendered)</li>
+          <li class="section-item"><span class="section-dot"></span>Share Section footer</li>
+        </ul>
+        <div style="margin-top:8px;"><span class="comp-tag shared">⚠ File lives in pages/home/ not pages/content/</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DEGREE NAVIGATION FLOW -->
+  <div class="section-heading">
+    <h2>Degree Navigation Flow</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="flow-box">
+    <h3>📚 3-Step Catalog Navigation (Home → Products)</h3>
+    <div class="flow-row">
+      <span class="flow-node root">Home /</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node component">Category Section</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node page">/main-degrees/:bookId</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node page">/sub-degrees/:bookId/:mainDegreeId</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node page">/categorized-products/:bookId/:mainDegreeId/:subDegreeId</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node component">/productpage/:id</span>
+    </div>
+    <p style="font-size:13px; color:#64748b; margin-top:12px;">
+      The <strong>bookId</strong> parameter represents the study material type (e.g., solved papers, assignments).<br>
+      <strong>mainDegreeId</strong> = degree type (e.g., BA, BCom, BCA). <strong>subDegreeId</strong> = programme (e.g., BA History).
+    </p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="guide-footer">
+  <strong>BMSG Page Guide</strong> — 29 user-facing pages across 6 groups · Generated 2026-04-11
+  <br><small>Open at <code>localhost:3000/page-guide.html</code> while the dev server is running</small>
+</div>
+
+</body>
+</html>

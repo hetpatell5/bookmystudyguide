@@ -1,0 +1,75 @@
+.page { animation: fadeIn .2s ease; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
+
+.steps {
+  position: relative;
+  display: flex;
+  gap: 0;
+  padding: 16px 20px 0;
+  overflow-x: auto;
+}
+.stepLine {
+  position: absolute;
+  top: 32px;
+  left: 40px;
+  right: 40px;
+  height: 2px;
+  background: var(--border-default);
+  z-index: 0;
+}
+.stepItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  z-index: 1;
+  min-width: 80px;
+}
+.stepIcon {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--border-default);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+  transition: var(--t-fast);
+}
+.stepLabel { font-size: 11px; color: var(--text-muted); font-weight: 500; text-align: center; }
+.active .stepIcon { border-color: var(--brand-primary); background: var(--brand-primary); color: #fff; }
+.active .stepLabel { color: var(--brand-primary); font-weight: 700; }
+.done .stepIcon { border-color: var(--color-success); background: var(--color-success); color: #fff; }
+.done .stepLabel { color: var(--color-success); }
+
+.descriptionPreview {
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-md);
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.6;
+  max-height: 320px;
+  overflow-y: auto;
+  background: var(--bg-subtle);
+}
+.descriptionPreview h1, .descriptionPreview h2, .descriptionPreview h3 { margin: 0 0 8px; }
+.descriptionPreview p, .descriptionPreview ul, .descriptionPreview ol { margin: 0 0 10px; }
+.descriptionPreview ul, .descriptionPreview ol { padding-left: 20px; }
+
+.uploadBox {
+  display: flex; align-items: center; justify-content: center;
+  border: 2px dashed var(--border-default);
+  border-radius: var(--r-md);
+  padding: 24px;
+  cursor: pointer;
+  transition: var(--t-fast);
+  min-height: 120px;
+}
+.uploadBox:hover { border-color: var(--brand-secondary); }
+.uploadPlaceholder { display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--text-muted); font-size: 13px; }
+
+.spin { animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Project edit modal — image card action overlay */
+.imgCardWrap:hover > .imgCardActions { opacity: 1 !important; }

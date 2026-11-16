@@ -1,0 +1,218 @@
+.page { display: flex; flex-direction: column; gap: 20px; }
+.spin { animation: spin .65s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.statCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-lg);
+}
+
+.statNum  { font-size: 22px; font-weight: 800; line-height: 1; }
+.statLabel { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
+.usageBar {
+  width: 48px;
+  height: 4px;
+  background: var(--bg-box);
+  border-radius: 99px;
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+}
+
+.usageFill {
+  height: 100%;
+  background: var(--brand-secondary);
+  border-radius: 99px;
+  min-width: 2px;
+}
+
+.couponModal {
+  max-width: 760px;
+}
+
+.couponModal :global(.modal-body) {
+  padding: 22px 24px;
+}
+
+.ruleSection {
+  margin: 16px 0 12px;
+  padding: 16px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-lg);
+}
+
+.ruleSectionHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.ruleSectionHead h3 {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 3px;
+}
+
+.ruleSectionHead p {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.ruleGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.rulePicker {
+  min-width: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+.rulePickerTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 12px 8px;
+}
+
+.rulePickerTop span {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.ruleSearch {
+  position: relative;
+  margin: 0 12px 10px;
+}
+
+.ruleSearch svg {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: var(--text-faint);
+  pointer-events: none;
+}
+
+.ruleSearch input {
+  width: 100%;
+  height: 34px;
+  padding: 7px 10px 7px 30px;
+  color: var(--text-primary);
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-sm);
+  outline: none;
+  font-size: 12px;
+}
+
+.ruleSearch input:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, .1);
+}
+
+.ruleList {
+  height: 170px;
+  overflow-y: auto;
+  padding: 0 8px 8px;
+}
+
+.ruleOption {
+  width: 100%;
+  min-height: 36px;
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: var(--r-sm);
+  color: var(--text-secondary);
+  text-align: left;
+  transition: var(--t-fast);
+}
+
+.ruleOption:hover {
+  background: var(--bg-subtle);
+}
+
+.ruleOption span:last-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ruleOptionActive {
+  color: var(--brand-secondary);
+  background: var(--color-info-bg);
+}
+
+.ruleCheck {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--r-xs);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.ruleOptionActive .ruleCheck {
+  border-color: var(--brand-secondary);
+  background: var(--brand-secondary);
+}
+
+.ruleEmpty {
+  padding: 24px 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+.ruleNote {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  color: var(--text-muted);
+  background: var(--color-info-bg);
+  border: 1px solid rgba(37, 99, 235, .18);
+  border-radius: var(--r-md);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .ruleGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ruleSectionHead {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,236 @@
+@import "../../../../_variables.scss";
+.careers-page {
+  padding-bottom: 5rem;
+  background-color: var(--bg-main);
+
+  .careers-hero {
+    padding: 8rem 0;
+    text-align: center;
+    background: radial-gradient(circle at 20% 50%, rgba(30, 58, 138, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
+    margin-bottom: 4rem;
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.5rem 1.25rem;
+      background: #f1f5f9;
+      color: $primary;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border-radius: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: -2px;
+      color: #1e293b;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+
+      .gradient-text {
+        background: linear-gradient(135deg, $primary 0%, #a855f7 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    p {
+      font-size: 1.25rem;
+      color: #64748b;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+
+      button {
+        padding: 1.25rem 2.5rem;
+        border-radius: 1.25rem;
+        font-weight: 800;
+        font-size: 1.1rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: none;
+
+        &.primary-btn {
+          background: $primary;
+          color: white;
+          box-shadow: 0 15px 30px -10px rgba(30, 58, 138, 0.4);
+
+          &:hover { transform: translateY(-5px); background: $primary-dark; }
+        }
+
+        &.secondary-btn {
+          background: white;
+          color: #1e293b;
+          border: 1px solid #e2e8f0;
+
+          &:hover { background: #f8fafc; color: $primary; }
+        }
+      }
+    }
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 4rem;
+
+    h2 { font-size: 2.5rem; font-weight: 900; color: #1e293b; margin-bottom: 1rem; }
+    p { font-size: 1.1rem; color: #64748b; line-height: 1.7; }
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 8rem;
+  }
+
+  .value-card {
+    background: white;
+    padding: 3rem 2.5rem;
+    border-radius: 2rem;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0,0,0,0.03);
+    transition: all 0.4s ease;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+      .icon-wrapper { background: $primary; color: white; transform: rotate(10deg); }
+    }
+
+    .icon-wrapper {
+      width: 64px;
+      height: 64px;
+      background: #f1f5f9;
+      color: $primary;
+      border-radius: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      transition: all 0.4s ease;
+    }
+
+    h3 { font-size: 1.4rem; font-weight: 800; color: #1e293b; margin-bottom: 1rem; }
+    p { font-size: 1rem; color: #64748b; line-height: 1.6; }
+  }
+
+  .positions-list {
+    margin-bottom: 8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .position-item {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+
+    &:hover { border-color: $primary; box-shadow: 0 15px 30px -10px rgba(30, 58, 138,0.1); }
+
+    .pos-info {
+      flex: 1;
+
+      .pos-title-row {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        margin-bottom: 0.75rem;
+
+        h3 { font-size: 1.5rem; font-weight: 800; color: #1e293b; margin: 0; }
+        .badge {
+          padding: 0.4rem 0.85rem;
+          background: #ecfdf5;
+          color: #059669;
+          font-weight: 700;
+          font-size: 0.75rem;
+          border-radius: 2rem;
+          text-transform: uppercase;
+        }
+      }
+
+      p { color: #64748b; margin: 0; font-size: 1rem; max-width: 600px; }
+    }
+
+    .apply-btn {
+      padding: 1rem 2rem;
+      background: #1e293b;
+      color: white;
+      border: none;
+      border-radius: 1rem;
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all 0.3s ease;
+
+      &:hover { background: $primary; box-shadow: 0 8px 20px rgba(30, 58, 138,0.2); }
+    }
+  }
+
+  .careers-footer {
+    padding: 4rem;
+    text-align: center;
+    border-radius: 2.5rem;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: white;
+
+    .spark-icon { margin-bottom: 2rem; color: $accent; }
+    h3 { font-size: 2.5rem; font-weight: 900; margin-bottom: 1.25rem; color: white; }
+    p { font-size: 1.1rem; color: #94a3b8; margin-bottom: 2.5rem; }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 1rem;
+      color: #94a3b8;
+
+      strong { color: white; }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .careers-page {
+    .careers-hero {
+      padding: 4rem 1.5rem;
+      h1 { font-size: 3rem; }
+      .hero-actions { flex-direction: column; width: 100%; gap: 1rem; }
+      .hero-actions button { width: 100%; }
+    }
+
+    .position-item {
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+      gap: 2rem;
+
+      .pos-info .pos-title-row { flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+      .apply-btn { width: 100%; justify-content: center; }
+    }
+
+    .careers-footer { padding: 3rem 2rem; h3 { font-size: 2rem; } }
+  }
+}

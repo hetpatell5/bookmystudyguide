@@ -1,0 +1,100 @@
+// BMSG Design System — Navy + Gold (brand palette from logo)
+// Primary: Navy Blue | Accent: Golden Yellow
+
+// --- Typography ---
+$font-primary: 'Outfit', 'Inter', 'Plus Jakarta Sans', sans-serif;
+
+// --- Brand ---
+$primary: #1e3a8a;         // BMSG Navy Blue
+$primary-light: #2d4fb5;
+$primary-dark: #162d6e;
+
+$secondary: #2563eb;       // Bright Blue (hover states, links)
+$secondary-light: #3b82f6;
+$secondary-dark: #1d4ed8;
+
+// CTA — Navy (primary action)
+$cta-buy: #1e3a8a;
+$cta-buy-hover: #162d6e;
+
+$accent: #f5b800;          // BMSG Golden Yellow
+$accent-light: #fcd34d;
+$accent-dark: #d97706;
+
+$success: #10b981;
+$danger: #ef4444;
+
+// --- Aliases ---
+$primary-color: $primary;
+$secondary-color: $secondary;
+$accent-color: $accent;
+$success-color: $success;
+$error: $danger;
+
+// --- Neutrals ---
+$gray-50: #f8fafc;
+$gray-100: #f1f5f9;
+$gray-200: #e2e8f0;
+$gray-300: #cbd5e1;
+$gray-400: #94a3b8;
+$gray-500: #64748b;
+$gray-600: #475569;
+$gray-700: #334155;
+$gray-800: #1e293b;
+$gray-900: #0f172a;
+$gray-950: #020617;
+
+$text-primary: $gray-900;
+$text-secondary: $gray-700;
+$text-muted: $gray-500;
+$text-light: $gray-400;
+
+// --- Surfaces (soft navy-tinted canvas) ---
+$white: #ffffff;
+$bg-main: #f5f6fa;         // Soft navy-tinted background
+$bg-card: $white;
+
+// --- Glass ---
+$glass-bg: rgba(255, 255, 255, 0.78);
+$glass-border: rgba(30, 58, 138, 0.12);  // Navy-tinted
+$glass-blur: 18px;
+
+// --- Shadows (Navy-tinted) ---
+$shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+$shadow-md: 0 4px 6px -1px rgba(30, 58, 138, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+$shadow-lg: 0 12px 24px -4px rgba(30, 58, 138, 0.14), 0 8px 16px -6px rgba(15, 23, 42, 0.06);
+$shadow-xl: 0 24px 48px -12px rgba(22, 45, 110, 0.18);
+$shadow-premium: 0 25px 50px -12px rgba(15, 23, 42, 0.12);
+$shadow-subtle: 0 10px 40px rgba(30, 58, 138, 0.06);
+$black: #000000;
+
+// --- Breakpoints ---
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-large: 1440px;
+
+@mixin mobile { @media (max-width: #{$breakpoint-mobile}) { @content; } }
+@mixin tablet { @media (max-width: #{$breakpoint-tablet}) { @content; } }
+@mixin desktop { @media (max-width: #{$breakpoint-desktop}) { @content; } }
+@mixin large { @media (max-width: #{$breakpoint-large}) { @content; } }
+
+// --- Layout ---
+$container-max: 1320px;
+$header-height: 80px;
+$radius-sm: 10px;
+$radius-md: 16px;
+$radius-lg: 22px;
+$radius-xl: 28px;
+
+// --- Motion ---
+$transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-fast: all 0.2s ease;
+$transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+// --- Gradients ---
+$gradient-primary: linear-gradient(135deg, #162d6e 0%, #1e3a8a 50%, #2563eb 100%);
+$gradient-premium: linear-gradient(135deg, $primary-dark, $secondary);
+$gradient-cta: linear-gradient(135deg, #1e3a8a 0%, #f5b800 100%);   // Navy to Gold
+$gradient-gold: linear-gradient(135deg, #f5b800 0%, #fcd34d 100%);
+$gradient-hero: linear-gradient(135deg, #162d6e 0%, #1e3a8a 60%, #2563eb 100%);

@@ -1,0 +1,235 @@
+.topbar {
+  height: var(--topbar-h);
+  width: calc(100% - var(--sidebar-w));
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 90;
+  padding: 0 22px;  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-topbar);
+  border-bottom: 1px solid var(--border-default);
+  box-shadow: var(--shadow-xs);
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.greeting {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.adminName {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.pageBreadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.iconBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--t-fast);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.iconBtn:hover {
+  background: var(--gray-100);
+  color: var(--text-primary);
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background: var(--border-default);
+  margin: 0 4px;
+}
+
+.userChip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 999px;
+  background: var(--gray-100);
+  border: 1px solid var(--border-default);
+  cursor: default;
+}
+
+.avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--grad-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userName {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.userRole {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: capitalize;
+}
+
+.logoutBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  color: var(--color-danger);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--t-fast);
+  cursor: pointer;
+  border: none;
+  background: none;
+  margin-left: 2px;
+}
+
+.logoutBtn:hover {
+  background: var(--color-danger-bg);
+}
+
+/* Quick Links Styles */
+.quickLinksGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.quickItem {
+  position: relative;
+}
+
+.quickBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--t-fast);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.quickBtn:hover {
+  background: var(--bg-subtle);
+  color: var(--brand-primary);
+}
+
+.quickDropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: -10px;
+  min-width: 180px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: all 0.2s ease;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.quickItem:hover .quickDropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.quickHeader {
+  padding: 8px 12px 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quickLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: var(--r-sm);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.quickLink:hover {
+  background: var(--bg-subtle);
+  color: var(--brand-secondary);
+}
+
+.quickLinkAdd {
+  color: var(--text-muted);
+  transition: color 0.15s;
+  display: flex;
+}
+
+.quickLinkAdd:hover {
+  color: var(--brand-primary);
+}

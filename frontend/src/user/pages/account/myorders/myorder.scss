@@ -1,0 +1,832 @@
+@import "../../../../_variables.scss";
+// --- Variables & Utilities ---
+$navy-deep: #0f172a;
+$navy-light: #1e293b;
+$accent-blue: #3b82f6;
+$accent-violet: $primary;
+$silver-gray: #f8fafc;
+$text-dim: #94a3b8;
+$glass-bg: rgba(255, 255, 255, 0.8);
+$glass-border: rgba(255, 255, 255, 0.4);
+
+@mixin glass-card {
+  background: $glass-bg;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid $glass-border;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
+
+.myorder-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  padding-bottom: 60px;
+}
+
+.user-loader-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  z-index: 1000;
+}
+
+.myorder-container {
+  max-width: 1100px;
+  margin: 100px auto 0;
+  padding: 0 24px;
+
+  @media (max-width: 768px) {
+    margin-top: 80px;
+    padding: 0 16px;
+  }
+}
+
+// --- Header Section ---
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .header-info {
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: $navy-deep;
+      margin: 0 0 8px 0;
+      letter-spacing: -1px;
+    }
+
+    p {
+      color: $text-dim;
+      font-size: 1.1rem;
+      margin: 0;
+    }
+  }
+
+  .order-count-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: $navy-deep;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.2);
+
+    .count {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.7;
+      margin-top: 4px;
+    }
+  }
+}
+
+// --- Empty State ---
+.empty-orders {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+
+  svg {
+    color: rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    color: $navy-deep;
+    margin-bottom: 12px;
+  }
+
+  p {
+    color: $text-dim;
+    max-width: 320px;
+    margin: 0 auto 32px;
+  }
+
+  .shop-now-btn {
+    background: $navy-deep;
+    color: white;
+    padding: 14px 40px;
+    border-radius: 12px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(15, 23, 42, 0.1);
+    }
+  }
+}
+
+// --- Orders Grid ---
+.order-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+  gap: 32px;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.order-card-wrapper {
+  perspective: 1000px;
+}
+
+.order-card {
+  @include glass-card;
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  .card-header {
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+    .id-section {
+      display: flex;
+      flex-direction: column;
+
+      .id-label {
+        font-size: 0.65rem;
+        font-weight: 700;
+        color: $text-dim;
+        letter-spacing: 1px;
+      }
+
+      .id-value {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: $navy-deep;
+      }
+    }
+
+    .status-pill {
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      &.paid,
+      &.delivered {
+        background: #dcfce7;
+        color: #15803d;
+      }
+
+      &.pending,
+      &.processing {
+        background: #fefce8;
+        color: #a16207;
+      }
+
+      &.shipped {
+        background: #e0f2fe;
+        color: #0369a1;
+      }
+
+      &.cancelled {
+        background: #fee2e2;
+        color: #b91c1c;
+      }
+    }
+  }
+
+  .card-body {
+    padding: 24px;
+    flex: 1;
+
+    .meta-info {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+
+      .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.85rem;
+        color: $text-dim;
+
+        svg {
+          color: rgba(0, 0, 0, 0.25);
+        }
+      }
+    }
+
+    .product-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .product-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
+
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .product-img-wrapper {
+        width: 64px;
+        height: 64px;
+        border-radius: 12px;
+        overflow: hidden;
+        background: $silver-gray;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .product-details {
+        flex: 1;
+
+        h4 {
+          font-size: 1rem;
+          font-weight: 600;
+          color: $navy-light;
+          margin: 0 0 4px 0;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          line-clamp: 1;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        p {
+          font-size: 0.85rem;
+          color: $text-dim;
+          margin: 0;
+        }
+      }
+
+      .product-price {
+        font-weight: 700;
+        color: $navy-deep;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .card-footer {
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+
+    .total-section {
+      display: flex;
+      flex-direction: column;
+
+      .label {
+        font-size: 0.75rem;
+        color: $text-dim;
+        font-weight: 500;
+      }
+
+      .amount {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: $navy-deep;
+      }
+    }
+
+    .action-group {
+      display: flex;
+      gap: 12px;
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        border-radius: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        background: white;
+        color: $navy-deep;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+          background: $navy-deep;
+          color: white;
+          border-color: $navy-deep;
+          transform: translateY(-2px);
+        }
+
+        &.btn-track {
+          padding: 10px 20px;
+          gap: 8px;
+          font-weight: 600;
+          font-size: 0.9rem;
+          background: $navy-deep;
+          color: white;
+          border: none;
+
+          &:hover {
+            opacity: 0.9;
+            box-shadow: 0 8px 16px rgba(15, 23, 42, 0.2);
+          }
+        }
+      }
+    }
+  }
+}
+
+// --- Tracking Modal ---
+.tracking-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.tracking-modal {
+  background: white;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
+  animation: modalSlideUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+  .modal-header {
+    padding: 32px;
+    background: $navy-deep;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .header-text {
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0 0 8px 0;
+        letter-spacing: -0.5px;
+      }
+
+      .awb-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.85rem;
+        opacity: 0.8;
+        font-weight: 500;
+
+        .divider {
+          opacity: 0.3;
+        }
+      }
+    }
+
+    .close-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      padding: 8px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 32px;
+    max-height: 60vh;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+    }
+
+    .tracking-loader {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 0;
+      gap: 20px;
+
+      p {
+        color: $text-dim;
+        font-weight: 500;
+      }
+
+      .pulse-loader {
+        width: 48px;
+        height: 48px;
+        border: 4px solid rgba(15, 23, 42, 0.1);
+        border-top-color: $navy-deep;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+    }
+
+    .no-tracking-data {
+      text-align: center;
+      padding: 40px 20px;
+
+      svg {
+        color: $accent;
+        margin-bottom: 20px;
+      }
+
+      p {
+        color: $text-dim;
+        line-height: 1.6;
+      }
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      position: relative;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 24px;
+
+      &.current {
+        .dot {
+          background: $accent-violet;
+          box-shadow: 0 0 0 4px rgba($accent-violet, 0.2);
+        }
+
+        .scan-status {
+          color: $navy-deep;
+        }
+      }
+
+      .timeline-marker {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 12px;
+        flex-shrink: 0;
+
+        .dot {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: $text-dim;
+          z-index: 1;
+        }
+
+        .line {
+          width: 2px;
+          flex: 1;
+          background: rgba(0, 0, 0, 0.05);
+          margin-top: 4px;
+        }
+      }
+
+      .timeline-content {
+        .scan-status {
+          font-size: 1rem;
+          font-weight: 700;
+          color: $text-dim;
+          margin: -2px 0 8px 0;
+        }
+
+        .scan-meta {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+
+          span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: $text-dim;
+            font-weight: 500;
+
+            svg {
+              opacity: 0.5;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes modalSlideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ── Due Payment Banner ──
+.due-payment-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-bottom: 1px solid #fbbf24;
+  flex-wrap: wrap;
+
+  .due-banner-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    svg { color: #b45309; flex-shrink: 0; }
+
+    .due-label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #92400e;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .due-amount {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #78350f;
+    }
+  }
+
+  .btn-pay-due {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: #92400e;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+
+    &:hover:not(:disabled) {
+      background: #78350f;
+      transform: translateY(-1px);
+    }
+    &:disabled { opacity: 0.7; cursor: not-allowed; }
+  }
+}
+
+// ── Action buttons (new) ──
+.btn-reorder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  background: rgba(239, 246, 255, 0.8);
+  color: #2563eb;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+
+  &:hover:not(:disabled) {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+    transform: translateY(-2px);
+  }
+  &:disabled { opacity: 0.6; cursor: not-allowed; }
+}
+
+.btn-cancel-order {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  background: rgba(254, 242, 242, 0.8);
+  color: #dc2626;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #dc2626;
+    color: white;
+    border-color: #dc2626;
+    transform: translateY(-2px);
+  }
+}
+
+.btn-write-review {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  padding: 4px 10px;
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fbbf24;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #f59e0b;
+    color: white;
+    border-color: #f59e0b;
+  }
+}
+
+// ── Spinner ──
+.btn-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+// ── Cancel Confirm Modal ──
+.cancel-confirm-modal {
+  background: white;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 24px;
+  padding: 40px 32px;
+  text-align: center;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
+  animation: modalSlideUp 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+  .cancel-modal-icon {
+    width: 72px;
+    height: 72px;
+    background: #fef3c7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    svg { color: #f59e0b; }
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 12px;
+  }
+
+  p {
+    color: #64748b;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin: 0 0 28px;
+  }
+
+  .cancel-modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .btn-confirm-cancel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px;
+      background: #dc2626;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover:not(:disabled) {
+        background: #b91c1c;
+        transform: translateY(-1px);
+      }
+      &:disabled { opacity: 0.7; cursor: not-allowed; }
+    }
+
+    .btn-keep-order {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px;
+      background: #f1f5f9;
+      color: #0f172a;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover:not(:disabled) {
+        background: #e2e8f0;
+      }
+      &:disabled { opacity: 0.6; cursor: not-allowed; }
+    }
+  }
+}

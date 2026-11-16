@@ -1,0 +1,7 @@
+http://localhost:5001/api/books -> Error: 500
+http://localhost:5001/api/mainDegrees -> 200 (9)
+http://localhost:5001/api/subDegrees -> 200 (1)
+http://localhost:5001/api/subjects -> 200 (0)
+http://localhost:5001/api/years -> 200 (1)
+http://localhost:5001/api/semesters -> 200 (1)
+http://localhost:5001/api/courses -> 200 (1)

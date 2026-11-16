@@ -1,0 +1,181 @@
+@import "../../../_variables.scss";
+
+.tailored-prompt-section {
+    padding: 30px 0;
+    
+    .tp-prompt-card {
+        background: linear-gradient(135deg, #f0fdfa, #ccfbf1);
+        border: 1px solid #99f6e4;
+        border-radius: 16px;
+        padding: 24px 32px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        box-shadow: 0 10px 25px -5px rgba(20, 184, 166, 0.15);
+        
+        .tp-prompt-icon {
+            color: #0d9488;
+            background: #e0f2fe;
+            padding: 12px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tp-prompt-content {
+            flex: 1;
+
+            h3 {
+                color: #115e59;
+                font-size: 1.25rem;
+                font-weight: 700;
+                margin: 0 0 4px;
+            }
+
+            p {
+                color: #0f766e;
+                margin: 0;
+                font-size: 0.95rem;
+                font-weight: 500;
+            }
+        }
+
+        .tp-prompt-btn {
+            background: #0f766e;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+
+            &:hover {
+                background: #115e59;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(15, 118, 110, 0.3);
+            }
+        }
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            text-align: center;
+            padding: 24px;
+            gap: 16px;
+
+            .tp-prompt-btn {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.tailored-showcase {
+    background: #f8fafc;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    .tailored-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+
+        h2 {
+            font-size: 1.5rem;
+            color: #0f172a;
+            font-weight: 700;
+            margin: 0;
+
+            span {
+                color: #2563eb;
+                position: relative;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    right: 0;
+                    height: 2px;
+                    background: #2563eb;
+                    opacity: 0.3;
+                }
+            }
+        }
+
+        .tp-change-btn {
+            background: #eff6ff;
+            color: #2563eb;
+            border: 1px solid #bfdbfe;
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+
+            &:hover {
+                background: #dbeafe;
+                border-color: #93c5fd;
+            }
+        }
+        
+        .tp-header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+
+            .tp-clear-btn {
+                background-color: transparent;
+                color: #64748b;
+                border: 1px solid #cbd5e1;
+                padding: 8px 16px;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s ease;
+
+                &:hover {
+                    background-color: #f1f5f9;
+                    color: #334155;
+                }
+            }
+        }
+        
+        @media (max-width: 640px) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            
+            h2 { font-size: 1.25rem; }
+        }
+    }
+
+    .tailored-category-block {
+        margin-bottom: 40px;
+
+        .block-title {
+            font-size: 1.15rem;
+            color: #334155;
+            font-weight: 600;
+            position: relative;
+            padding-left: 14px;
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 4px;
+                height: 18px;
+                background: #3b82f6;
+                border-radius: 4px;
+            }
+        }
+    }
+}

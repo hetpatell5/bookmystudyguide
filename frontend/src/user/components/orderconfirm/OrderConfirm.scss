@@ -1,0 +1,152 @@
+$primary-color: #4caf50;
+$spinner-color: #2196f3;
+$bg-overlay: rgba(255, 255, 255, 0.95);
+$text-color: #333;
+
+.fullscreen-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $bg-overlay;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.loader-container {
+  text-align: center;
+}
+
+.spinner-box {
+  p {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #666;
+    letter-spacing: 0.5px;
+  }
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid $spinner-color;
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: spin 1s linear infinite;
+}
+
+.success-box {
+  animation: fadeIn 0.5s ease-in-out;
+
+  h1 {
+    color: $text-color;
+    margin-top: 20px;
+    font-size: 2rem;
+  }
+
+  p {
+    color: #777;
+    margin-bottom: 30px;
+  }
+
+  .continue-btn {
+    padding: 12px 30px;
+    background-color: $text-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:hover {
+      background-color: black;
+    }
+  }
+}
+
+.checkmark-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+  background: white;
+  border: 2px solid $primary-color;
+  position: relative;
+}
+
+.checkmark {
+  &.draw:after {
+    animation-duration: 800ms;
+    animation-timing-function: ease;
+    animation-name: checkmark;
+    transform: scaleX(-1) rotate(135deg);
+  }
+
+  &:after {
+    opacity: 1;
+    height: 40px;
+    width: 20px;
+    transform-origin: left top;
+    border-right: 4px solid $primary-color;
+    border-top: 4px solid $primary-color;
+    content: "";
+    left: 22px;
+    top: 40px;
+    position: absolute;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes checkmark {
+  0% {
+    height: 0;
+    width: 0;
+    opacity: 1;
+  }
+
+  20% {
+    height: 0;
+    width: 20px;
+    opacity: 1;
+  }
+
+  40% {
+    height: 40px;
+    width: 20px;
+    opacity: 1;
+  }
+
+  100% {
+    height: 40px;
+    width: 20px;
+    opacity: 1;
+  }
+}

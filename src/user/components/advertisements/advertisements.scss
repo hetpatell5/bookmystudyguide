@@ -1,0 +1,68 @@
+@import "../../../_variables.scss";
+
+// ─── Advertisement Banner — Full Bleed ───────────────────────────────────────
+
+.advertisement-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 0;
+  display: block;
+  line-height: 0;
+
+  // ── Only the outer wrappers get 100% width ────────────────────────────────
+  // Do NOT force .slick-track to 100% — slick needs it to be n x 100% wide
+  .slick-slider,
+  .slick-list {
+    width: 100%;
+    overflow: hidden; // clips all slides except the active one
+    border-radius: 0;
+    line-height: 0;
+  }
+
+  // Track holds all slides side by side — let slick manage its width
+  .slick-track {
+    display: flex;
+    line-height: 0;
+  }
+
+  // Each slide takes exactly one "screen-width" slot
+  .slick-slide {
+    flex-shrink: 0;
+    line-height: 0;
+
+    >div {
+      width: 100%;
+      line-height: 0;
+    }
+  }
+
+  // ── Images — natural proportions, no cropping ─────────────────────────────
+  .ad-image {
+    width: 100%;
+    margin-top: 25px;
+    height: auto; // natural image height — zero cropping
+    display: block;
+    border-radius: 0;
+  }
+
+  // ── Slide wrapper ─────────────────────────────────────────────────────────
+  .ad-slide {
+    width: 100%;
+    
+    outline: none;
+    overflow: hidden;
+    line-height: 0;
+    display: block;
+  }
+
+  // ── Single banner ─────────────────────────────────────────────────────────
+  .single-ad {
+    width: 100%;
+    display: block;
+    line-height: 0;
+  }
+
+  // ── Slick dots — gold brand colour ────────────────────────────────────────
+}

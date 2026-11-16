@@ -1,0 +1,527 @@
+@import "../../../../_variables.scss";
+
+$ab-navy:   #0f172a;
+$ab-blue:   $primary;
+$ab-gold:   $accent;
+$ab-text:   #334155;
+$ab-muted:  #64748b;
+$ab-border: #e2e8f0;
+$ab-gray:   #f8fafc;
+
+// ─── Reveal ───────────────────────────────────────────────────────────────────
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  &.in { opacity: 1; transform: none; }
+}
+
+// ─── Base ─────────────────────────────────────────────────────────────────────
+.ab {
+  font-family: $font-primary;
+  color: $ab-text;
+  line-height: 1.7;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ab__wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+  @include tablet { padding: 0 24px; }
+  @include mobile { padding: 0 16px; }
+}
+
+// ─── Page Header ─────────────────────────────────────────────────────────────
+.ab__header {
+  background: #fff;
+  border-bottom: 1px solid $ab-border;
+  padding: 28px 0 24px;
+
+  h1 {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    color: $ab-navy;
+    margin: 0;
+    letter-spacing: -0.03em;
+  }
+}
+
+
+.ab__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: $ab-muted;
+  margin-bottom: 14px;
+
+  a {
+    color: $ab-blue;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
+
+  span:last-child { color: $ab-text; }
+}
+
+// ─── Sections ─────────────────────────────────────────────────────────────────
+.ab__section {
+  padding: 48px 0;
+  @include mobile { padding: 32px 0; }
+
+  &--gray { background: $ab-gray; }
+}
+
+.ab__section-hd {
+  margin-bottom: 32px;
+
+  h2 {
+    font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+    font-weight: 700;
+    color: $ab-navy;
+    margin: 0 0 8px;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: $ab-muted;
+    margin: 0;
+    max-width: 560px;
+    line-height: 1.65;
+  }
+}
+
+// ─── Intro ────────────────────────────────────────────────────────────────────
+.ab__intro {
+  max-width: 820px;
+
+  p {
+    font-size: 0.98rem;
+    color: $ab-text;
+    margin-bottom: 14px;
+    line-height: 1.75;
+
+    &:last-child { margin-bottom: 0; }
+  }
+}
+
+.ab__intro-lead {
+  font-size: 1.05rem !important;
+  color: $ab-navy !important;
+  line-height: 1.75 !important;
+  strong { font-weight: 700; color: $ab-navy; }
+}
+
+
+// ─── Vision & Mission ─────────────────────────────────────────────────────────
+.ab__vm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+
+  @include tablet { grid-template-columns: 1fr; }
+}
+
+.ab__vm-card {
+  border: 1px solid $ab-border;
+  border-radius: 12px;
+  padding: 28px 28px;
+  background: #fff;
+
+  h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: $ab-navy;
+    margin: 0 0 14px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid $ab-border;
+  }
+
+  p {
+    font-size: 0.98rem;
+    color: $ab-text;
+    margin: 0;
+    line-height: 1.75;
+  }
+
+  &--accent {
+    border-color: $ab-blue;
+    border-width: 2px;
+
+    h3 {
+      color: $ab-blue;
+      border-bottom-color: rgba($ab-blue, 0.2);
+    }
+  }
+}
+
+// ─── Features ────────────────────────────────────────────────────────────────
+.ab__features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+
+  @include desktop { grid-template-columns: repeat(2, 1fr); }
+  @include mobile  { grid-template-columns: 1fr; }
+}
+
+.ab__feature {
+  background: $ab-gray;
+  border-radius: 10px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow 0.2s ease, background 0.2s ease;
+
+  &:hover {
+    background: #fff;
+    box-shadow: 0 4px 16px rgba($ab-navy, 0.08);
+  }
+
+  h4 {
+    font-size: 0.93rem;
+    font-weight: 700;
+    color: $ab-navy;
+    margin: 0;
+  }
+
+  p {
+    font-size: 0.875rem;
+    color: $ab-muted;
+    margin: 0;
+    line-height: 1.6;
+  }
+}
+
+.ab__feature-icon {
+  width: 36px;
+  height: 36px;
+  color: $ab-blue;
+
+  svg { width: 100%; height: 100%; }
+}
+
+// ─── Process Steps ────────────────────────────────────────────────────────────
+.ab__steps {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+
+  @include tablet {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.ab__step {
+  flex: 1;
+  background: #fff;
+  border: 1px solid $ab-border;
+  border-radius: 12px;
+  padding: 28px 24px;
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $ab-navy;
+    margin: 12px 0 8px;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: $ab-muted;
+    margin: 0;
+    line-height: 1.6;
+  }
+}
+
+.ab__step-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: $ab-blue;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ab__step-arrow {
+  font-size: 1.4rem;
+  color: $ab-border;
+  padding-top: 32px;
+  flex-shrink: 0;
+
+  @include tablet { display: none; }
+}
+
+// ─── Reason Section ───────────────────────────────────────────────────────────
+.ab__reason-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 56px;
+  align-items: center;
+
+  @include tablet { grid-template-columns: 1fr; gap: 32px; }
+}
+
+.ab__reason-text {
+  h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 700;
+    color: $ab-navy;
+    margin: 0 0 20px;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    font-size: 0.97rem;
+    color: $ab-text;
+    margin-bottom: 14px;
+    line-height: 1.78;
+
+    &:last-child { margin-bottom: 0; }
+  }
+}
+
+.ab__reason-box {
+  background: $ab-navy;
+  border-radius: 14px;
+  padding: 32px 28px;
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(#fff, 0.04);
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(#fff, 0.12);
+    line-height: 1.4;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  li {
+    font-size: 0.9rem;
+    color: rgba(#fff, 0.82);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid rgba(#fff, 0.07);
+
+    &:last-child { border-bottom: none; }
+
+    svg {
+      width: 15px;
+      height: 15px;
+      color: $ab-gold;
+      flex-shrink: 0;
+      stroke-width: 2.8;
+    }
+  }
+}
+
+.ab__reason-icon {
+  display: none;
+}
+
+// ─── Timeline ────────────────────────────────────────────────────────────────
+.ab__timeline {
+  max-width: 720px;
+}
+
+.ab__tl-item {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.ab__tl-year {
+  width: 110px;
+  flex-shrink: 0;
+  text-align: right;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: $ab-blue;
+  padding-top: 2px;
+
+  @include mobile { width: 80px; font-size: 0.8rem; }
+}
+
+.ab__tl-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ab__tl-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid $ab-blue;
+  background: #fff;
+  flex-shrink: 0;
+  margin-top: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.ab__tl-line {
+  width: 2px;
+  background: $ab-border;
+  flex: 1;
+  min-height: 48px;
+  margin: 4px 0 -2px;
+}
+
+.ab__tl-body {
+  flex: 1;
+  padding-bottom: 40px;
+
+  .ab__tl-item:last-child & { padding-bottom: 0; }
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $ab-navy;
+    margin: 0 0 6px;
+  }
+
+  p {
+    font-size: 0.93rem;
+    color: $ab-text;
+    margin: 0;
+    line-height: 1.65;
+  }
+}
+
+// ─── Credentials ─────────────────────────────────────────────────────────────
+.ab__creds {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+
+  @include desktop { grid-template-columns: repeat(2, 1fr); }
+  @include mobile  { grid-template-columns: 1fr; }
+}
+
+.ab__cred {
+  background: #fff;
+  border: 1px solid $ab-border;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba($ab-navy, 0.08);
+    border-color: rgba($ab-blue, 0.3);
+  }
+}
+
+.ab__cred-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ab__cred-icon {
+  width: 36px;
+  height: 36px;
+  color: $ab-blue;
+
+  svg { width: 100%; height: 100%; }
+}
+
+.ab__cred-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #fff;
+  background: $ab-blue;
+  padding: 3px 9px;
+  border-radius: 20px;
+}
+
+.ab__cred h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: $ab-navy;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.ab__cred-id {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: $ab-gray;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-top: auto;
+
+  span {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: $ab-muted;
+  }
+
+  strong {
+    font-size: 0.82rem;
+    color: $ab-navy;
+    font-family: 'JetBrains Mono', monospace;
+    word-break: break-all;
+  }
+}
+
+.ab__cred-link {
+  display: inline-block;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: $ab-blue;
+  text-decoration: none;
+  transition: color 0.15s ease;
+
+  &:hover { text-decoration: underline; }
+
+  &--muted {
+    color: $ab-muted;
+    font-weight: 400;
+    font-size: 0.8rem;
+    cursor: default;
+    &:hover { text-decoration: none; }
+  }
+}
