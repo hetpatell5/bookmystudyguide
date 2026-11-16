@@ -5,7 +5,7 @@ const adminAuth = require("../middleware/adminAuth");
 const auth = require("../middleware/auth");
 const { paymentLimiter } = require("../middleware/rateLimiter");
 
-const { Order, OrderItem, Product, ComboProduct, EmailTemplate, Cart, Coupon, User, Project, SoftCopy, Synopsis, ProductLink, sequelize } = require("../model/mysql");
+const { Order, OrderItem, Product, Language, ComboProduct, EmailTemplate, Cart, Coupon, User, Project, SoftCopy, Synopsis, ProductLink, sequelize } = require("../model/mysql");
 const { Op } = require("sequelize");
 const sendMail = require("../utils/sendMail");
 const { generateInvoiceBuffer } = require("../services/invoiceService");
@@ -463,8 +463,13 @@ router.get("/admin/all-orders", adminAuth, async (req, res) => {
         include: [{
           model: Product,
           as: 'Product',
-          attributes: ['language'],
+          attributes: ['language', 'languageId'],
           required: false,
+          include: [{
+            model: Language,
+            attributes: ['name'],
+            required: false,
+          }],
         }],
       }],
       order: [['createdAt', 'DESC']],
