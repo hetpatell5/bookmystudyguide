@@ -465,11 +465,18 @@ router.get("/admin/all-orders", adminAuth, async (req, res) => {
           as: 'Product',
           attributes: ['language', 'languageId'],
           required: false,
-          include: [{
-            model: Language,
-            attributes: ['name'],
-            required: false,
-          }],
+          include: [
+            {
+              model: Language,
+              attributes: ['name'],
+              required: false,
+            },
+            {
+              model: ProductLink,
+              attributes: ['language'],
+              required: false,
+            },
+          ],
         }],
       }],
       order: [['createdAt', 'DESC']],

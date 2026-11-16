@@ -798,7 +798,7 @@ function OrderDrawer({ order, onClose, onStatusUpdate }) {
                 <div className={styles.itemsList}>
                   {items.map((item, i) => {
                     // Use stored language first; fall back to current Product.language from DB join
-                    const itemLang = item.language || item.Product?.language || item.Product?.Language?.name || null;
+                    const itemLang = item.language || item.Product?.language || item.Product?.Language?.name || item.Product?.ProductLinks?.[0]?.language || null;
                     let displaySku = item.sku && item.sku !== 'NO-SKU' ? item.sku : null;
                     if (displaySku && itemLang) {
                       const langSuffix = `-${itemLang.toUpperCase()}`;
@@ -1365,7 +1365,7 @@ export default function Orders() {
                   const hard = isHardCopyOrder(o);
                   const skus = (o.OrderItems || o.products || []).map(i => {
                     if (!i.sku || i.sku === 'NO-SKU') return null;
-                    const iLang = i.language || i.Product?.language || i.Product?.Language?.name || null;
+                    const iLang = i.language || i.Product?.language || i.Product?.Language?.name || i.Product?.ProductLinks?.[0]?.language || null;
                     let displaySku = i.sku;
                     if (iLang) {
                       const langSuffix = `-${iLang.toUpperCase()}`;
